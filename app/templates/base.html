@@ -5,15 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
     <title>
-        {{ title }} - microblog
+        {{ title }} - ValueCheck
     </title>
         {% else %}
-        <title>Welcome to Microblog - microblog{% endif %}</title>
+        <title>Welcome to ValueCheck - ValueCheck{% endif %}</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 0; 
+            background-color: #fad2ef;
+          }          
+        .navbar {
+          background-color: #ffa6e7;
+        }
+        .navbar-nav .nav-link {
+            color: white; 
+        }
+      </style>
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('index') }}">ValueCheck</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +43,9 @@
                         <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                     </li>
                     {% else %}
-                    <li>
-                        <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
-                    </li>
+                        <a class="nav-link" href="{{ url_for('my_account')}}">My Account<a>
+                        <a class="nav-link" href="{{ url_for('leaderboard')}}">Leaderboard<a>
+                        <a class="nav-link" href="{{ url_for('logout')}}">Logout<a>
                     {% endif %}
                 </ul>
             </div>

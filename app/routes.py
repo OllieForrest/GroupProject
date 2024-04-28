@@ -62,3 +62,12 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/my_account')
+def my_account():
+    return render_template('account.html', title='My Account')
+
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template('leaderboard_1.html', title='Leaderboard')
