@@ -11,41 +11,81 @@
   <!-- Custom CSS -->
   <style>
     body {
-      padding-top: 60px; 
-      background-color: #fad2ef;
-    }
-    .navbar {
-      background-color: #ffa6e7;
-    }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 15px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.nav-item a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">CITS3403 Group Project</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a href="homepage.html">Home</a>
-              </li>
-              <li class="nav-item ">
-                <a href="myaccount.html" class="nav-link">My Account</a> 
-              </li>
-              <li class="nav-item">
-                <a href="leaderboard_1.html" class="nav-link">Leaderboard</a>
-              </li>
-              <li class="nav-item">
-                <a href="signout.html">Sign Out</a>
-              </li>
-      </div>
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">CITS3403 Group Project</a>
+    <button class="navbar-toggler" id="navbar-toggler">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="navbar-collapse" id="navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a href="homepage.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="myaccount.html">My Account</a>
+        </li>
+        <li class="nav-item">
+          <a href="leaderboard_1.html">Leaderboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="signout.html">Sign Out</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Page Content -->
   <div class="container">
