@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        .leaderboard-table {
+          border-radius: 30px;
+          box-shadow: 0px 5px 15px 8px #f3afe5;
+          margin-top: 20px;
+          padding: 20px;
+          font-family: Arial;
+        }
+      </style>
+
+  <!-- Leaderboard Table -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-center" > Leaderboard </h2> 
+        <h5 class="text-center mt-4">Total Scores of the Game</h5> 
+        <table class="table table-hover leaderboard-table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Username</th>
+              <th scope="col">Name</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sample Data -->
+            <tr>
+              <th scope="row">1</th>
+              <td>user123</td>
+              <td>Banana Lady</td>
+              <td>1500</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>user456</td>
+              <td>Jane Doe</td>
+              <td>1450</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>user789</td>
+              <td>Mark Harris</td>
+              <td>1400</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>user598</td>
+              <td>John Cooke</td>
+              <td>1250</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>user696</td>
+              <td>Jamie May</td>
+              <td>1100</td>
+            </tr>
+            <!-- Add more users as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
