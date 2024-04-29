@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Post - CITS3403 Group Project</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding-top: 40px;
+      background-color: #fad2ef
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .btn-pink {
+      background-color: #ff9ad0;
+      color: #fff;
+      border-color: #ff9ad0;
+    }
+    .btn-pink:hover {
+      background-color: #ff7bbf;
+      border-color: #ff7bbf;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mt-5">
+        <h2>Create Post</h2>
+        <div class="form-container">
+          <!-- Post Form -->
+          <form id="postForm" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="photo">Upload Photo:</label>
+              <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="condition">Condition:</label>
+              <select class="form-control" id="condition" name="condition" required>
+                <option value="">Select Condition</option>
+                <option value="brand_new">Brand New</option>
+                <option value="good_condition">Good Condition</option>
+                <option value="used">Used</option>
+                <option value="fair">Fair</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-pink">Create Post</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript for Form Submission -->
+  <script>
+  $(document).ready(function() {
+    $('#postForm').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Create FormData object to handle file upload
+      var formData = new FormData(this);
+
+      // i need to add more form fields
+      //mapping the conditions array  to console
+      var conditions = $('input[name="condition[]"]:checked').map(function(){
+        return $(this).val();
+      }).get();
+      console.log('Conditions:', conditions);
+
+      // Add conditions to form data
+      formData.append('conditions', JSON.stringify(conditions));
+
+      // Perform AJAX request
+$.ajax({
+    url: 'XXX ADD ENDPOINT PLS XXXs',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function(response) {
+      console.log('Server response:', response);
+      if (response.success) {
+        // Show a success message to the user
+        alert('Post created successfully!');
+      } else {
+        // Show an error message to the user
+        alert('Failed to create post: ' + response.message);
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error('Error:', error);
+      // Show an error message to the user
+      alert('An error occurred while creating the post. Please try again later.');
+    }
+  });
+</script>
+</body>
+</html>
