@@ -10,7 +10,6 @@
   <style>
     body {
       padding-top: 40px;
-     
     }
     .form-container {
       max-width: 600px;
@@ -28,10 +27,38 @@
       background-color: #ff7bbf;
       border-color: #ff7bbf;
     }
-
   </style>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #ffa6e7;">
+    <div class="container">
+      <a class="navbar-brand" href="#">CITS3403 Group Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="homepage.html">&#43;</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="homepage.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="leaderboard_1.html">Leaderboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signin.html">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="create_account.html">Create Account</a>
+          </li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
 
   <!-- Page Content -->
   <div class="container">
@@ -69,46 +96,48 @@
 
   <!-- Custom JavaScript for Form Submission -->
   <script>
-  $(document).ready(function() {
-    $('#postForm').submit(function(event) {
-      event.preventDefault(); // Prevent default form submission
+    $(document).ready(function() {
+      $('#postForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-      // Create FormData object to handle file upload
-      var formData = new FormData(this);
+        // Create FormData object to handle file upload
+        var formData = new FormData(this);
 
-      // i need to add more form fields
-      //mapping the conditions array  to console
-      var conditions = $('input[name="condition[]"]:checked').map(function(){
-        return $(this).val();
-      }).get();
-      console.log('Conditions:', conditions);
+        // i need to add more form fields
+        //mapping the conditions array  to console
+        var conditions = $('input[name="condition[]"]:checked').map(function(){
+          return $(this).val();
+        }).get();
+        console.log('Conditions:', conditions);
 
-      // Add conditions to form data
-      formData.append('conditions', JSON.stringify(conditions));
+        // Add conditions to form data
+        formData.append('conditions', JSON.stringify(conditions));
 
-      // Perform AJAX request
-$.ajax({
-    url: 'XXX ADD ENDPOINT PLS XXXs',
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function(response) {
-      console.log('Server response:', response);
-      if (response.success) {
-        // Show a success message to the user
-        alert('Post created successfully!');
-      } else {
-        // Show an error message to the user
-        alert('Failed to create post: ' + response.message);
-      }
-    },
-    error: function(xhr, status, error) {
-      console.error('Error:', error);
-      // Show an error message to the user
-      alert('An error occurred while creating the post. Please try again later.');
-    }
-  });
-</script>
+        // Perform AJAX request
+        $.ajax({
+          url: 'XXX ADD ENDPOINT PLS XXXs',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            console.log('Server response:', response);
+            if (response.success) {
+              // Show a success message to the user
+              alert('Post created successfully!');
+            } else {
+              // Show an error message to the user
+              alert('Failed to create post: ' + response.message);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            // Show an error message to the user
+            alert('An error occurred while creating the post. Please try again later.');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
