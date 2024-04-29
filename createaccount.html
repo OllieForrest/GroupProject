@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - CITS3403 Group Project</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding-top: 40px;
+    }
+    .navbar {
+      background-color: #ffa6e7;
+    }
+    .card {
+      border-radius: 30px;
+      box-shadow: 0px 5px 15px 8px #f3afe5;
+      margin-top: 20px;
+      padding: 20px;
+      font-family: Arial;
+    }
+    .btn-pink {
+      background-color: #ff9ad0;
+      color: #fff;
+      border-color: #ff9ad0;
+    }
+    .btn-pink:hover {
+      background-color: #ff7bbf;
+      border-color: #ff7bbf;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">CITS3403 Group Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="homepage.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="leaderboard_1.html">Leaderboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signin.html">Sign In</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="create_account.html">Create Account</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center mt-5">
+        <h2>Create Account</h2>
+        <div class="card">
+          <div class="card-body">
+            <form id="createAccountForm" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <div class="form-group">
+                <label for="profilePic">Profile Picture:</label>
+                <input type="file" class="form-control-file" id="profilePic" name="profilePic" accept="image/*" required>
+              </div>
+              <button type="submit" class="btn btn-pink">Create Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript for Form Submission -->
+  <script>
+    $(document).ready(function() {
+      $('#createAccountForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Create FormData object to handle file upload
+        var formData = new FormData(this);
+
+        // Perform AJAX request
+        $.ajax({
+          url: 'XXX SERVER END POINT PLS XXX', // Specify your server endpoint here
+          type: 'POST',
+          data: formData,
+          processData: false, // Prevent jQuery from processing the data
+          contentType: false, // Prevent jQuery from setting contentType
+          success: function(response) {
+            console.log('Server response:', response);
+            // Handle success response (e.g., redirect to another page)
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            // Handle error (e.g., display error message)
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
