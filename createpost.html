@@ -4,34 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Post - CITS3403 Group Project</title>
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Custom CSS -->
   <style>
-    body {
-      padding-top: 40px;
-    }
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .btn-pink {
-      background-color: #ff9ad0;
-      color: #fff;
-      border-color: #ff9ad0;
-    }
-    .btn-pink:hover {
-      background-color: #ff7bbf;
-      border-color: #ff7bbf;
-    }
+    body { padding-top: 40px; }
+    .form-container { max-width: 600px; margin: 0 auto; }
+    .form-group { margin-bottom: 20px; }
+    .btn-pink { background-color: #ff9ad0; color: #fff; border-color: #ff9ad0; }
+    .btn-pink:hover { background-color: #ff7bbf; border-color: #ff7bbf; }
   </style>
 </head>
 <body>
-
-  <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #ffa6e7;">
     <div class="container">
       <a class="navbar-brand" href="#">CITS3403 Group Project</a>
@@ -40,47 +22,60 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="createpost.html">&#43;</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="homepage.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="leaderboard_1.html">Leaderboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signin.html">Sign In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="create_account.html">Create Account</a>
-          </li>
+          <li class="nav-item active"><a class="nav-link" href="createpost.html">&#43;</a></li>
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboard_1.html">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" href="create_account.html">Create Account</a></li>
         </ul>
       </div> 
     </div>
   </nav>
 
-  <!-- Page Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center mt-5">
         <h2>Create Post</h2>
         <div class="form-container">
-          <!-- Post Form -->
           <form id="postForm" enctype="multipart/form-data">
             <div class="form-group">
               <label for="photo">Upload Photo:</label>
               <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
             </div>
             <div class="form-group">
+              <label for="itemName">Item Name:</label>
+              <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Enter the item name" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" name="description" rows="3" required placeholder="Describe the item, including any historical or unique features"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="category">Category:</label>
+              <select class="form-control" id="category" name="category">
+                <option value="">Select Category</option>
+                <option value="antiques">Antiques</option>
+                <option value="art">Art</option>
+                <option value="jewelry">Jewelry</option>
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <!-- Add more categories as needed -->
+              </select>
+            </div>
+            <div class="form-group">
               <label for="condition">Condition:</label>
-              <select class="form-control" id="condition" name="condition" required>
+              <select class="form-control" id="condition" name="condition">
                 <option value="">Select Condition</option>
                 <option value="brand_new">Brand New</option>
                 <option value="good_condition">Good Condition</option>
                 <option value="used">Used</option>
                 <option value="fair">Fair</option>
+                <!-- Additional conditions can be added here -->
               </select>
+            </div>
+            <div class="form-group">
+              <label for="startingPrice">Starting Price ($):</label>
+              <input type="number" class="form-control" id="startingPrice" name="startingPrice" placeholder="Enter starting price" required>
             </div>
             <button type="submit" class="btn btn-pink">Create Post</button>
           </form>
@@ -89,50 +84,28 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Custom JavaScript for Form Submission -->
   <script>
     $(document).ready(function() {
       $('#postForm').submit(function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Create FormData object to handle file upload
+        event.preventDefault();
         var formData = new FormData(this);
-
-        // i need to add more form fields
-        //mapping the conditions array  to console
-        var conditions = $('input[name="condition[]"]:checked').map(function(){
-          return $(this).val();
-        }).get();
-        console.log('Conditions:', conditions);
-
-        // Add conditions to form data
-        formData.append('conditions', JSON.stringify(conditions));
-
-        // Perform AJAX request
         $.ajax({
-          url: 'XXX ADD ENDPOINT PLS XXXs',
+          url: 'XXX ADD ENDPOINT PLS XXX',
           type: 'POST',
           data: formData,
           processData: false,
           contentType: false,
           success: function(response) {
-            console.log('Server response:', response);
             if (response.success) {
-              // Show a success message to the user
               alert('Post created successfully!');
             } else {
-              // Show an error message to the user
               alert('Failed to create post: ' + response.message);
             }
           },
           error: function(xhr, status, error) {
-            console.error('Error:', error);
-            // Show an error message to the user
             alert('An error occurred while creating the post. Please try again later.');
           }
         });
