@@ -5,7 +5,7 @@ import sqlalchemy as sa
 from app import app, db
 from app.forms import LoginForms, RegistrationForm
 from app.models import User
-
+from flask import render_template
 
 @app.route('/')
 def landingpage():
@@ -23,7 +23,7 @@ def index():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home', posts=posts,)
 
 
 @app.route('/login', methods=['GET', 'POST'])
