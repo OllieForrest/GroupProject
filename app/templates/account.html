@@ -8,14 +8,14 @@
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
     }
-  .btn-pink {
-    background-color: #ff9ad0;
+  .btn {
+    background-color: #FFCDB2;
     color: #fff;
-    border-color: #ff9ad0;
+    border-color: #FFCDB2;
   }
-  .btn-pink:hover {
-    background-color: #ff7bbf;
-    border-color: #ff7bbf;
+  .btn:hover {
+    background-color: #ffb790;
+    border-color: #ffb790;
   }
   </style>
 
@@ -29,9 +29,11 @@
               <td><img src="{{ user.avatar(128) }}"></td>
               <p class="card-text" id="userName">Name: {{ user.username }}</p>
               <p class="card-text" id="userEmail">Email: {{ user.email }}</p>
+              {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+              {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%d-%m-%Y') }}</p>{% endif %}
               <hr>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-pink" data-toggle="modal" data-target="#editAccountModal">
+              <button type="button" class="btn" data-toggle="modal" data-target="#editAccountModal">
                   Edit Account Details
                 </button>
                 
@@ -41,7 +43,7 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
-                      <button type="button" class="btn btn-pink" data-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -61,8 +63,8 @@
                           <input type="text" class="form-control" id="inputUsername" placeholder="Enter your username" required>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-pink" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-pink">Save Changes</button>
+                          <button type="button" class="btn" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn">Save Changes</button>
                         </div>
                       </form>
                     </div>

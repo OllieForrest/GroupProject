@@ -6,6 +6,7 @@ from app import app, db
 from app.forms import LoginForms, RegistrationForm
 from app.models import User
 from flask import render_template
+from datetime import datetime, timezone
 
 @app.route('/')
 def landingpage():
@@ -75,3 +76,9 @@ def my_account(username):
 @app.route('/leaderboard')
 def leaderboard():
     return render_template('leaderboard_1.html', title='Leaderboard')
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.now(timezone.utc)
+        db.session.commit()
