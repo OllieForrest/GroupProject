@@ -7,6 +7,9 @@ from app.forms import LoginForms, RegistrationForm
 from app.models import User
 from flask import render_template
 from datetime import datetime, timezone
+from flask import request, jsonify
+import json
+from flask import redirect, url_for
 
 @app.route('/')
 def landingpage():
@@ -77,8 +80,25 @@ def my_account(username):
 def leaderboard():
     return render_template('leaderboard_1.html', title='Leaderboard')
 
+
+@app.route('/update_user', methods=['GET','POST'])
+@login_required
+def edit_profile():
+    username = request.form.get('username')
+    about_me = request.form.get('about_me')
+    email = request.form.get('email')
+
+    current_user.username = username
+    current_user.about_me = about_me
+    current_user.email = email
+    db.session.commit()
+    
+    return redirect(url_for('my_account', username=current_user.username))
+
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.now(timezone.utc)
         db.session.commit()
+

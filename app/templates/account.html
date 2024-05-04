@@ -49,18 +49,18 @@
                     </div>
                     <div class="modal-body">
                       <!-- Form inside modal for editing account details -->
-                      <form id="editAccountForm">
+                      <form id="editAccountForm" action="/update_user" method="POST">
                         <div class="form-group">
-                          <label for="inputName">Name:</label>
-                          <input type="text" class="form-control" id="inputName" placeholder="Enter your name" required>
+                          <label for="inputName"><u></u>Username:</label>
+                          <input type="text" name="username"class="form-control" id="inputName" placeholder="Enter your username" required>
                         </div>
                         <div class="form-group">
                           <label for="inputEmail">Email:</label>
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email address" required>
+                          <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Enter your email address" required>
                         </div>
                         <div class="form-group">
-                          <label for="inputUsername">Username:</label>
-                          <input type="text" class="form-control" id="inputUsername" placeholder="Enter your username" required>
+                          <label for="inputUsername">About Me:</label>
+                          <input type="text"  name="about_me" class="form-control" id="inputUsername" placeholder="Enter your description" required>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn" data-dismiss="modal">Close</button>
@@ -86,24 +86,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
 
-    <script>
-      $(document).ready(function() {
-        $('#editAccountForm').submit(function(event) {
-          event.preventDefault(); // Prevent default form submission
-  
-          var newName = $('#inputName').val();
-          var newEmail = $('#inputEmail').val();
-          var newUsername = $('#inputUsername').val();
-  
-          $('#userName').text('Name: ' + newName);
-          $('#userEmail').text('Email: ' + newEmail);
-          $('#userUsername').text('Username: ' + newUsername);
-  
-          $('#successMessage').fadeIn().delay(2000).fadeOut(); // Show success message briefly
-          $('#editAccountModal').modal('hide'); // Hide the modal after updating
-        });
-      });
-    </script>
 {% endblock %}
