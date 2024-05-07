@@ -44,7 +44,12 @@ def load_user(id):
 
 class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    body: so.Mapped[str] = so.mapped_column(sa.String(140))
+    item_name: so.Mapped[str] = so.mapped_column(sa.String(100))
+    description: so.Mapped[str] = so.mapped_column(sa.String(280))
+    category: so.Mapped[str] = so.mapped_column(sa.String(50))
+    condition: so.Mapped[str] = so.mapped_column(sa.String(50))
+    starting_price: so.Mapped[float] = so.mapped_column(sa.Float)
+    photo_filename: so.Mapped[str] = so.mapped_column(sa.String(200))  # Filename of the uploaded photo
     timestamp: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id),

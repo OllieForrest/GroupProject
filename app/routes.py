@@ -11,9 +11,27 @@ from flask import request, jsonify
 import json
 from flask import redirect, url_for
 
+@app.route('/createposts')
+def posting():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file:
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Save the filename to the database for the post
+        # Example: post.photo_filename = filename
+        return 'File uploaded successfully'
+    return render_template('createpost.html', title="Create Your Posts!")
+
 @app.route('/')
 def landingpage():
     return render_template('landingpage.html', title='ValueCheck')
+
 @app.route('/index')
 @login_required
 def index():

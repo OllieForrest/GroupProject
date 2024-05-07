@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mt-5">
+        <h2>Create Post</h2>
+        <div class="form-container">
+          <form id="postForm" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="photo">Upload Photo:</label>
+              <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="itemName">Item Name:</label>
+              <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Enter the item name" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" name="description" rows="3" required placeholder="Describe the item, including any historical or unique features"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="category">Category:</label>
+              <select class="form-control" id="category" name="category">
+                <option value="">Select Category</option>
+                <option value="antiques">Antiques</option>
+                <option value="art">Art</option>
+                <option value="jewelry">Jewelry</option>
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <!-- Add more categories as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="condition">Condition:</label>
+              <select class="form-control" id="condition" name="condition">
+                <option value="">Select Condition</option>
+                <option value="brand_new">Brand New</option>
+                <option value="good_condition">Good Condition</option>
+                <option value="used">Used</option>
+                <option value="fair">Fair</option>
+                <!-- Additional conditions can be added here -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="startingPrice">Starting Price ($):</label>
+              <input type="number" class="form-control" id="startingPrice" name="startingPrice" placeholder="Enter starting price" required>
+            </div>
+            <button type="submit" class="btn btn-pink">Create Post</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#postForm').submit(function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          url: 'XXX ADD ENDPOINT PLS XXX',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            if (response.success) {
+              alert('Post created successfully!');
+            } else {
+              alert('Failed to create post: ' + response.message);
+            }
+          },
+          error: function(xhr, status, error) {
+            alert('An error occurred while creating the post. Please try again later.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+{% endblock %}
