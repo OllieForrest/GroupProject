@@ -21,7 +21,7 @@
       <p>Starting Price: ${{ post.starting_price }}</p>
       <p>
         {% if post.image %}
-        <img src="data:{{ post.mimetype }};base64,{{ post.image|b64encode }}" alt="{{ post.picture_name }}">
+        <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
         {% else %}
         No Image Available
         {% endif %}

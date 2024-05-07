@@ -12,6 +12,7 @@ import urllib.request
 from flask import redirect, url_for
 from werkzeug.utils import secure_filename
 from app.models import Post
+import base64
 
 @app.route('/postingpage')
 def postpage():
@@ -93,7 +94,7 @@ def edit_profile():
     
     return redirect(url_for('my_account', username=current_user.username))
 
-@app.route('/createposts', methods=['GET', 'POST'])
+@app.route('/createposts', methods=['POST'])
 @login_required
 def posting():
     if request.method == 'POST':
@@ -110,8 +111,11 @@ def posting():
         
         filename= secure_filename(pic.filename)
         mimetype = pic.mimetype
-        img=pic.read()
-
+        img = pic.read()  # Read image data
+        
+        # Store the image data as base64 encoded string
+        img_base64 = base64.b64encode(img).decode("utf-8")
+        
         new_post = Post(
             item_name=item_name,
             description=description,
@@ -120,14 +124,14 @@ def posting():
             starting_price=starting_price,
             user_id=user_id,
             picture_name=filename,
-            img=img,
+            img=img_base64,  # Store base64 encoded image
             mimetype=mimetype,
-            author=current_user.username
+            author=current_user
         )
         db.session.add(new_post)
         db.session.commit()
         flash('Congratulations, you have posted!')
-    return redirect(url_for('index',))
+        return redirect(url_for('index'))  # Corrected redirect call
 
 @app.before_request
 def before_request():
