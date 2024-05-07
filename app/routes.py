@@ -103,6 +103,14 @@ def posting():
         condition = request.form['condition']
         starting_price = float(request.form['startingPrice'])
         user_id = current_user.id  
+        pic= request.files['picture']
+
+        if not pic:
+            return "No pic uploaded", 400
+        
+        filename= secure_filename(pic.filename)
+        mimetype = pic.mimetype
+        img=pic.read()
 
         new_post = Post(
             item_name=item_name,
@@ -110,12 +118,16 @@ def posting():
             category=category,
             condition=condition,
             starting_price=starting_price,
-            user_id=user_id
+            user_id=user_id,
+            picture_name=filename,
+            img=img,
+            mimetype=mimetype,
+            author=current_user.username
         )
         db.session.add(new_post)
         db.session.commit()
         flash('Congratulations, you have posted!')
-    return redirect(url_for('index', username=current_user.username))
+    return redirect(url_for('index',))
 
 @app.before_request
 def before_request():

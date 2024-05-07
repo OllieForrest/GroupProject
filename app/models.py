@@ -54,5 +54,6 @@ class Post(db.Model):
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id),
                                                index=True)
     author: so.Mapped[User] = so.relationship(back_populates='posts')
-
-
+    picture_name: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+    img: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+    mimetype:so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)

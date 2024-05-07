@@ -13,13 +13,21 @@
       </div>
 
     {% for post in posts %}
-      <div>
-        <h2>{{ post.item_name }}</h2>
-        <p>{{ post.description }}</p>
-        <p>Category: {{ post.category }}</p>
-        <p>Condition: {{ post.condition }}</p>
-        <p>Starting Price: ${{ post.starting_price }}</p>
+    <div>
+      <h2>{{ post.item_name }}</h2>
+      <p>{{ post.description }}</p>
+      <p>Category: {{ post.category }}</p>
+      <p>Condition: {{ post.condition }}</p>
+      <p>Starting Price: ${{ post.starting_price }}</p>
+      <p>
+        {% if post.image %}
+        <img src="data:{{ post.mimetype }};base64,{{ post.image|b64encode }}" alt="{{ post.picture_name }}">
+        {% else %}
+        No Image Available
+        {% endif %}
+      </p>
     </div>
+  
     {% endfor %}
 {% endblock %}
 
