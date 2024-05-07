@@ -4,6 +4,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from config import Config
 from config import UPLOAD_FOLDER
+from flask import send_from_directory
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -11,6 +13,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+app.config['SECRET_KEY'] = 'you_will_never_ever_guess_it'
 
 #What extension is allowed for the upload
 def allowed_file(filename):
@@ -19,6 +22,7 @@ def allowed_file(filename):
 #Upload folder and max content size
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 from app import routes, models
 
 

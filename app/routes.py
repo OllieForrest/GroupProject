@@ -7,46 +7,26 @@ from app.forms import LoginForms, RegistrationForm
 from app.models import User
 from flask import render_template
 from datetime import datetime, timezone
-from flask import request, jsonify
-import json
+from flask import request
+import urllib.request
 from flask import redirect, url_for
+from werkzeug.utils import secure_filename
+from app.models import Post
 
-@app.route('/createposts')
-def posting():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
-    if file:
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # Save the filename to the database for the post
-        # Example: post.photo_filename = filename
-        return 'File uploaded successfully'
-    return render_template('createpost.html', title="Create Your Posts!")
+@app.route('/postingpage')
+def postpage():
+    return render_template('createpost.html', title="Create User Post")
+
 
 @app.route('/')
 def landingpage():
     return render_template('landingpage.html', title='ValueCheck')
 
-@app.route('/index')
-@login_required
-def index():
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts,)
 
+@app.route('/index')
+def index():
+    all_posts = Post.query.all()
+    return render_template('index.html', posts=all_posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -113,6 +93,29 @@ def edit_profile():
     
     return redirect(url_for('my_account', username=current_user.username))
 
+@app.route('/createposts', methods=['GET', 'POST'])
+@login_required
+def posting():
+    if request.method == 'POST':
+        item_name = request.form['itemName']
+        description = request.form['description']
+        category = request.form['category']
+        condition = request.form['condition']
+        starting_price = float(request.form['startingPrice'])
+        user_id = current_user.id  
+
+        new_post = Post(
+            item_name=item_name,
+            description=description,
+            category=category,
+            condition=condition,
+            starting_price=starting_price,
+            user_id=user_id
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        flash('Congratulations, you have posted!')
+    return redirect(url_for('index', username=current_user.username))
 
 @app.before_request
 def before_request():

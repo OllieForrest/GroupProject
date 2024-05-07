@@ -9,11 +9,9 @@
       <div class="col-lg-12 text-center mt-5">
         <h2>Create Post</h2>
         <div class="form-container">
-          <form id="postForm" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="photo">Upload Photo:</label>
-              <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
-            </div>
+
+          <form id="postForm" action="/createposts" method="post" enctype="multipart/form-data">
+
             <div class="form-group">
               <label for="itemName">Item Name:</label>
               <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Enter the item name" required>
@@ -59,31 +57,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#postForm').submit(function(event) {
-        event.preventDefault();
-        var formData = new FormData(this);
-        $.ajax({
-          url: 'XXX ADD ENDPOINT PLS XXX',
-          type: 'POST',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response) {
-            if (response.success) {
-              alert('Post created successfully!');
-            } else {
-              alert('Failed to create post: ' + response.message);
-            }
-          },
-          error: function(xhr, status, error) {
-            alert('An error occurred while creating the post. Please try again later.');
-          }
-        });
-      });
-    });
-  </script>
+
 </body>
 
 {% endblock %}
