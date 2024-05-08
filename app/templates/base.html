@@ -80,11 +80,10 @@
             <a href="{{ url_for('logout') }}">Logout</a>
             <a href="{{ url_for('postpage')}}">Post!</a>
             {% endif %}
-            
         </nav>
-
     </header>
-
+    {% block navbar %}
+    {% endblock %}
     
 
     {% with messages = get_flashed_messages() %}
