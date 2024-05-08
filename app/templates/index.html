@@ -8,26 +8,76 @@
           <div class="col-lg-12 text-center mt-5">
             <h2>Welcome, {{ current_user.username }}!</h2>
             <p class="lead">Guess the price correctly and earn points!</p>
+            <p>Your passed posts:</p>
           </div>
         </div>
       </div>
 
-    {% for post in posts %}
-    <div>
-      <h2>{{ post.item_name }}</h2>
-      <p>{{ post.description }}</p>
-      <p>Category: {{ post.category }}</p>
-      <p>Condition: {{ post.condition }}</p>
-      <p>Starting Price: ${{ post.starting_price }}</p>
-      <p>
-        {% if post.img %}
-        <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
-        {% else %}
-        No Image Available
-        {% endif %}
-      </p>
-    </div>
-  
-    {% endfor %}
-{% endblock %}
+      <style>
+        .post {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #000000; /* Default border color */
+            transition: border-color 0.2s; /* Smooth transition for the border color */
+        }
+    
+        .post:hover {
+            border-color: white; /* Changes the border to white on hover */
+        }
+    
+        .post h2 {
+            color: #000000;
+        }
+    
+        .post p {
+            font-size: 16px;
+            color: #000000;
+        }
+    
+        .post img {
+            width: 100%;  /* makes the image expand to fill the width of its container */
+            height: auto; /* scales the height according to the width while maintaining aspect ratio */
+            max-width: 300px; /* maximum width of the image */
+            max-height: 300px; /* maximum height of the image */
+        }
+        .delete-btn {
+            padding: 5px 10px;
+            background-color: #3d324e;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+      .delete-btn:hover {
+            background-color: rgb(43, 27, 48);
+        }
 
+    </style>
+    
+    </style>
+    
+    {% for post in posts %}
+    <div class="post">
+        <h2>{{ post.item_name }}</h2>
+        <p>{{ post.description }}</p>
+        <p>Category: {{ post.category }}</p>
+        <p>Condition: {{ post.condition }}</p>
+        <p>Starting Price: ${{ post.starting_price }}</p>
+        <p>
+            {% if post.img %}
+            <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
+            {% else %}
+            No Image Available
+            {% endif %}
+        </p>
+        {% if current_user == post.author %}
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+          <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
+      </form>
+      </form>      
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% endblock %}
+    
