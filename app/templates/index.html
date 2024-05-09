@@ -75,7 +75,7 @@
     <p>About this item: {{ post.description }}</p>
     <p>Category: {{ post.category }}</p>
     <p>Condition: {{ post.condition }}</p>
-    <p>Starting Price: ${{ post.starting_price }}</p>
+    <p>Retail Price: ${{ post.starting_price }}</p>
     {% if current_user == post.author %}
     <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
         <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>

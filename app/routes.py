@@ -103,6 +103,7 @@ def posting():
         category = request.form['category']
         condition = request.form['condition']
         starting_price = float(request.form['startingPrice'])
+        sold_price = float(request.form['soldPrice'])
         user_id = current_user.id  
         pic= request.files['picture']
 
@@ -126,7 +127,8 @@ def posting():
             picture_name=filename,
             img=img_base64,  # Store base64 encoded image
             mimetype=mimetype,
-            author=current_user
+            author=current_user,
+            sold_price= sold_price
         )
         db.session.add(new_post)
         db.session.commit()
