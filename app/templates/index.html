@@ -62,7 +62,15 @@
 
 </style>
 
-{% for post in posts %}
+<div class="container mt-5">
+    <form class="d-flex mb-3" action="{{ url_for('search') }}" method="GET">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+</div>
+
+
+{% for post in posts.items %}
 <div class="post">
     <div class="text-center"> <!-- Center the content -->
         <h2>{{ post.item_name }}</h2>
@@ -95,6 +103,17 @@
     {% endif %}
 </div>
 {% endfor %}
+
+<div class="text-center mt-5">
+    {% if posts.has_prev %}
+        <a href="{{ url_for('index', page=posts.prev_num) }}" class="btn btn-primary">Previous</a>
+    {% endif %}
+    Page {{ posts.page }} of {{ posts.pages }}
+    {% if posts.has_next %}
+        <a href="{{ url_for('index', page=posts.next_num) }}" class="btn btn-primary">Next</a>
+    {% endif %}
+</div>
+
 
 <script>
     function updateGuess(value) {

@@ -17,6 +17,10 @@
     background-color: #ffb790;
     border-color: #ffb790;
   }
+
+  .h1,.h5,.p1{
+
+  }
   </style>
 
     <div class="container">
@@ -32,6 +36,7 @@
               {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
               {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%d-%m-%Y') }}</p>{% endif %}
               <hr>
+              {% if current_user == user %}
               <!-- Button trigger modal -->
               <button type="button" class="btn" data-toggle="modal" data-target="#editAccountModal">
                   Edit Account Details
@@ -76,6 +81,7 @@
                   Account details updated successfully!
                 </div>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
