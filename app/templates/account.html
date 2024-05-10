@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     .card {
-      background-color: #fbfbfb;
+      background-color: #222;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
@@ -17,6 +17,8 @@
     background-color: #ffb790;
     border-color: #ffb790;
   }
+
+  
   </style>
 
     <div class="container">
@@ -32,6 +34,7 @@
               {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
               {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%d-%m-%Y') }}</p>{% endif %}
               <hr>
+              {% if current_user == user %}
               <!-- Button trigger modal -->
               <button type="button" class="btn" data-toggle="modal" data-target="#editAccountModal">
                   Edit Account Details
@@ -76,13 +79,13 @@
                   Account details updated successfully!
                 </div>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
     </div>
   
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -4,66 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
-    <title>
-        {{ title }} - ValueCheck
-    </title>
-        {% else %}
-        <title>Welcome to ValueCheck - ValueCheck{% endif %}</title>
+    <title>{{ title }} - ValueCheck</title>
+    {% else %}
+    <title>Welcome to ValueCheck - ValueCheck</title>
+    {% endif %}
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet');
 
-        *{
+        * {
             margin: 0;
             padding: 0;
-        box-sizing: border-box;
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
         
         body {
             background: #6d6875;
-            color: ededed;
-        
+            color: #ededed;
         }
         
-        .header{
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 10%;
-            background: transparent;
+            padding: 10px 10%; 
+            background: #222;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-        
+            transition: background-color 0.3s ease;
+        } 
+        .card{
+            background-color: #222;
         }
-        
-        .logo{
-            font-size: 25px;
+        .logo {
+            font-size: 20px; 
             color: #ededed;
             text-decoration: none;
             font-weight: 600;
         }
         
         .navbar a {
-            font-size: 18px;
+            font-size: 16px;
             color: #ededed;
             text-decoration: none;
             font-weight: 500;
-            margin-left: 35px;
+            margin-left: 25px; 
             transition: .3s;
         }
         
         .navbar a:hover,
         .navbar a.active {
             color: #FFCDB2;
-        
         }
-      </style>
+
+        .solid {
+            background-color: #222 !important;
+        }
+
+    </style>
 </head>
 <body>
     <header class="header">
@@ -71,10 +75,10 @@
         
         <nav class="navbar">
             {% if current_user.is_anonymous %}
-            <a href="{{ url_for('index') }}" class="active">Home</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
             {% else %}
+            <a href="{{ url_for('index')}}" class="active">Home</a>
             <a href="{{ url_for('my_account', username=current_user.username) }}">My Account</a>
             <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
             <a href="{{ url_for('logout') }}">Logout</a>
@@ -82,9 +86,9 @@
             {% endif %}
         </nav>
     </header>
+
     {% block navbar %}
     {% endblock %}
-    
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -104,6 +108,13 @@
         {% block content %}
         {% endblock %}
     </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            header.classList.toggle('solid', window.scrollY > 0);
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

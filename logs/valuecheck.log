@@ -1,4 +1,4 @@
-2024-05-08 23:13:39,872 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
+2024-05-09 20:04:32,061 ERROR: Exception on /search [GET] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
@@ -49,5 +49,5 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'guess_
 2024-05-08 23:31:20,695 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-08 23:31:26,388 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-08 23:32:17,222 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-09 12:44:33,225 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
-2024-05-10 09:35:01,752 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
+2024-05-10 14:09:07,317 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
+2024-05-10 14:11:02,817 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
