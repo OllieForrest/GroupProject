@@ -49,3 +49,5 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'guess_
 2024-05-08 23:31:20,695 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-08 23:31:26,388 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-08 23:32:17,222 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-09 12:44:33,225 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
+2024-05-10 09:35:01,752 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:52]
