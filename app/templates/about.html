@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About ValueCheck</title>
+    <link href = "landingpage.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">ValueCheck.</a>
+        <div class="navbar">
+            <a href="#" class="logo">Home</a>
+            <a href="#contact" class="contact">Contact</a>
+        </div>
+        <div class="date-time-container">
+            <p id="date-time">Loading date and time...</p>
+        </div>
+    </header>
+    <section class="content">
+        <h1>Welcome to ValueCheck!</h1>
+        <p>Get ready for the thrill of ValueCheck, the ultimate entertainment platform where you can show off your appraisal skills across a variety of item categories!</p>
+        <p>Make your guesses on item values and rack up points based on how close you get to the real deal. The closer your guess, the bigger your score!</p>
+        <p>But that's not all—join the race in our competitive leagues! Climb the leaderboard and prove you're the top appraiser by outshining the rest in item valuations.</p>
+
+        <h2>Our Point System</h2>
+        <p>Accuracy pays off here! Nail the exact appraisal value and watch your points rise with a bonus score. </p>
+        <p>Every precise guess inches you closer to becoming a legend in the league.</p>
+        <p> Are you ready to take the challenge? </p>
+    </section>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        function updateDateTime() {
+            document.getElementById('date-time').innerHTML = moment().format('LLLL');
+        }
+        setInterval(updateDateTime, 1000); // Update the time every second
+    </script>
+</body>
+</html>
+
