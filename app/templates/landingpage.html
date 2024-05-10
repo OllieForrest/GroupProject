@@ -13,7 +13,7 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background: #6d6875;
+            background: #B8D8D8;
             color: #ededed;
         }
         .header {
@@ -30,13 +30,13 @@
         }
         .logo {
             font-size: 25px;
-            color: #ededed;
+            color: #EEF5DB;
             text-decoration: none;
             font-weight: 600;
         }
         .navbar a {
             font-size: 18px;
-            color: #ededed;
+            color: #7A9E9f;
             text-decoration: none;
             font-weight: 500;
             margin-left: 35px;
@@ -44,11 +44,11 @@
         }
         .navbar a:hover,
         .navbar a.active {
-            color: #FFCDB2;
+            color: #EEF5dB;
         }
         .date-time-container {
             margin-left: auto;
-            color: #FFCDB2;
+            color: #fd776d;
             font-size: 16px;
         }
         .home {
@@ -64,15 +64,17 @@
             font-size: 56px;
             font-weight: 700;
             line-height: 1.2;
+            color: #EEF5DB
         }
         .home-content h3 {
             font-size: 32px;
             font-weight: 700;
-            color: #FFCDB2;
+            color: #4F6367;
         }
         .home-content p {
             font-size: 16px;
             margin: 20px 0 40px;
+            color: #EEF5DB
         }
         .btn-box {
             display: flex;
@@ -84,21 +86,23 @@
             position: relative;
             display: inline-flex;
             justify-content: center;
+            align-items: flex-end;
             width: 150px;
             height: 100%;
-            background: #FFCDB2;
-            border: 2px solid #FFCDB2;
+            background: #7A9E9F;
+            border: 2px solid #7a9e9f;
             border-radius: 8px;
             font-size: 19px;
-            color: #081b29;
+            color: #4f6367;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1px;
             z-index: 1;
+            padding-bottom: 10px;
         }
         .btn-box a:nth-child(2) {
             background: transparent;
-            color: #FFCDB2;
+            color: #7A9E9F;
         }
         .btn-box a::before {
             content: '';
@@ -107,9 +111,12 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: white;
+            background: #eef5db;
+    
+            border-radius: 8px;
             z-index: -1;
             transition: .5s;
+            
         }
         .btn-box a:hover::before {
             width: 100%;
@@ -190,12 +197,12 @@
         </div>
         <!-- SVG for animation -->
         <svg class="Header__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1337.97 684.43">
-            <path class="Header__shape bigSquare" fill="none" stroke="#000000" stroke-width="8" d="M546.519 349.271l86.383-56.098 56.097 86.383-86.383 56.098z"/>
-            <circle class="Header__shape bigCircle" fill="#DAC4A9" cx="1076.52" cy="262.17" r="59"/>
-            <path class="Header__shape triangle" fill="none" stroke="#000000" stroke-width="8" d="M372.15 462.17L321 434.58l-4.88 56.16z"/>
-            <path class="Header__shape littleSquare" fill="#000000" d="M285.523 262.61l12.372-53.59 53.59 12.372-12.372 53.59z"/>
-            <circle class="Header__shape hoop" fill="none" stroke="#DAC4A9" stroke-width="13" cx="905.52" cy="447.17" r="45"/>
-            <circle class="Header__shape littleCircle" fill="#000000" cx="1036.52" cy="203.17" r="27"/>
+            <path class="Header__shape bigSquare" fill="none" stroke="#4F6367" stroke-width="8" d="M546.519 349.271l86.383-56.098 56.097 86.383-86.383 56.098z"/>
+            <circle class="Header__shape bigCircle" fill="#eef5db" cx="1076.52" cy="262.17" r="59"/>
+            <path class="Header__shape triangle" fill="none" stroke="#4F6367" stroke-width="8" d="M372.15 462.17L321 434.58l-4.88 56.16z"/>
+            <path class="Header__shape littleSquare" fill="#EEF5DB" d="M285.523 262.61l12.372-53.59 53.59 12.372-12.372 53.59z"/>
+            <circle class="Header__shape hoop" fill="none" stroke="#7A9E9F" stroke-width="13" cx="905.52" cy="447.17" r="45"/>
+            <circle class="Header__shape littleCircle" fill="#EEF5DB" cx="1036.52" cy="203.17" r="27"/>
         </svg>        
     </header>
     <section class="home">
