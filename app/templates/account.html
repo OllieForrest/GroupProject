@@ -31,6 +31,7 @@
               <td><img src="{{ user.avatar(128) }}"></td>
               <p class="card-text" id="userName">Name: {{ user.username }}</p>
               <p class="card-text" id="userEmail">Email: {{ user.email }}</p>
+              <p class="card-text" id="points">Points: {{ user.points }}</p>
               {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
               {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%d-%m-%Y') }}</p>{% endif %}
               <hr>

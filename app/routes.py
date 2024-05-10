@@ -163,3 +163,19 @@ def search():
         matched_posts = Post.query.all()
     return render_template('results.html', posts=matched_posts, query=query)
 
+
+@app.route('/submit_guess/<int:post_id>', methods=['POST'])
+def submit_guess(post_id):
+    post = Post.query.get_or_404(post_id)
+    guessed_price = float(request.form['guess_price'])
+    user = current_user
+
+    # Calculate points based on closeness to actual price
+    error = abs(post.sold_price - guessed_price)
+    points_awarded = max(0, 100 - int(error/100))  # Example scoring system
+
+    # Update user points
+    user.points += points_awarded
+    db.session.commit()
+
+    return redirect(url_for('index'))

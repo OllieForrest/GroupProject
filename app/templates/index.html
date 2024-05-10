@@ -52,12 +52,11 @@
         background-color: rgb(43, 27, 48);
     }
 
-    #guessValue {
-        font-size: 14px; 
-        height: auto; 
-        width: 80px; 
-        text-align: center;
-        margin: 0 auto;
+    .guess-value {
+        width: 60px; 
+        text-align: center; 
+        margin: 10px auto; 
+        display: block; 
     }
 
 </style>
@@ -91,15 +90,15 @@
 
     {% else %}
     
-    <form>
+    <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
         <div class="form-group">
             <label for="guess">Guess the Price:</label>
-            <input type="range" class="form-range" min="0" max="100" id="guess" name="guess" onchange="updateGuess(this.value)">
-            <input type="text" class="form-control" id="guessValue" readonly>
+            <input type="range" class="form-range guess-slider" min="0" name="guess_price" onchange="updateGuess(this, value)">
+            <input type="text" class="form-control guess-value" readonly>
         </div>
         <button type="submit" class="btn btn-primary">Submit Guess</button>
     </form>
-
+    
     {% endif %}
 </div>
 {% endfor %}
@@ -116,9 +115,11 @@
 
 
 <script>
-    function updateGuess(value) {
-        document.getElementById('guessValue').value = '$' + value;
-    }
+    function updateGuess(slider, value) {
+        var parentDiv = slider.closest('.form-group');
+        parentDiv.querySelector('.guess-value').value = '$' + value;
+        var soldPrice = parseFloat(slider.dataset.soldPrice); // Get the sold price of the post
+        slider.setAttribute('max', soldPrice); // Set the max attribute of the slider to the sold price
+    }    
 </script>
-
 {% endblock %}
