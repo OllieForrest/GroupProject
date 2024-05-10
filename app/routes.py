@@ -118,9 +118,8 @@ def posting():
         
         filename= secure_filename(pic.filename)
         mimetype = pic.mimetype
-        img = pic.read()  # Read image data
+        img = pic.read()  
         
-        # Store the image data as base64 encoded string
         img_base64 = base64.b64encode(img).decode("utf-8")
         
         new_post = Post(
@@ -131,7 +130,7 @@ def posting():
             starting_price=starting_price,
             user_id=user_id,
             picture_name=filename,
-            img=img_base64,  # Store base64 encoded image
+            img=img_base64,  
             mimetype=mimetype,
             author=current_user,
             sold_price= sold_price,
@@ -140,7 +139,7 @@ def posting():
         db.session.add(new_post)
         db.session.commit()
         flash('Congratulations, you have posted!')
-        return redirect(url_for('index'))  # Corrected redirect call
+        return redirect(url_for('index')) 
 
 @app.before_request
 def before_request():
@@ -174,12 +173,14 @@ def submit_guess(post_id):
     guessed_price = float(request.form['guess_price'])
     user = current_user
 
-    # Calculate points based on closeness to actual price
     error = abs(post.sold_price - guessed_price)
-    points_awarded = max(0, 100 - int(error/100))  # Example scoring system
+    points_awarded = max(0, 100 - int(error/100)) 
 
-    # Update user points
     user.points += points_awarded
     db.session.commit()
 
     return redirect(url_for('index'))
+
+@app.route('/contact_us')
+def contact_us():
+    return render_template('contactus.html', title="Contact Us")
