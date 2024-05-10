@@ -55,3 +55,4 @@ jinja2.exceptions.TemplateNotFound: results.html
 2024-05-09 21:44:34,203 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-09 21:45:20,273 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-09 21:53:50,467 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-09 22:08:56,617 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
