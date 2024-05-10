@@ -26,8 +26,11 @@ def landingpage():
 
 @app.route('/index')
 def index():
-    all_posts = Post.query.all()
-    return render_template('index.html', posts=all_posts)
+    page = request.args.get('page', 1, type=int)
+    per_page = 2
+    posts = Post.query.paginate(page=page, per_page=per_page)
+    return render_template('index.html', posts=posts)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,7 +54,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('/'))
+    return redirect(url_for('landingpage'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -60,7 +63,7 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, points = 0)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -103,6 +106,7 @@ def posting():
         category = request.form['category']
         condition = request.form['condition']
         starting_price = float(request.form['startingPrice'])
+        sold_price = float(request.form['soldPrice'])
         user_id = current_user.id  
         pic= request.files['picture']
 
@@ -126,7 +130,8 @@ def posting():
             picture_name=filename,
             img=img_base64,  # Store base64 encoded image
             mimetype=mimetype,
-            author=current_user
+            author=current_user,
+            sold_price= sold_price
         )
         db.session.add(new_post)
         db.session.commit()
@@ -147,4 +152,14 @@ def delete_post(post_id):
         db.session.commit()
     else:
         flash('Post not found.', 'error')
-    return redirect(url_for('index'))  # assuming you want to redirect to the index page
+    return redirect(url_for('index'))
+
+@app.route('/search')
+def search():
+    query = request.args.get('query')  
+    if query:
+        matched_posts = Post.query.filter(Post.item_name.ilike(f'%{query}%')).all()
+    else:
+        matched_posts = Post.query.all()
+    return render_template('results.html', posts=matched_posts, query=query)
+
