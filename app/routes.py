@@ -13,6 +13,7 @@ from flask import redirect, url_for
 from werkzeug.utils import secure_filename
 from app.models import Post
 import base64
+import random
 
 @app.route('/postingpage')
 def postpage():
@@ -109,6 +110,8 @@ def posting():
         sold_price = float(request.form['soldPrice'])
         user_id = current_user.id  
         pic= request.files['picture']
+        maxslider = random.randint(int(sold_price) , 100001)
+
 
         if not pic:
             return "No pic uploaded", 400
@@ -131,7 +134,8 @@ def posting():
             img=img_base64,  # Store base64 encoded image
             mimetype=mimetype,
             author=current_user,
-            sold_price= sold_price
+            sold_price= sold_price,
+            maxslider = maxslider
         )
         db.session.add(new_post)
         db.session.commit()

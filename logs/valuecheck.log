@@ -1,15 +1,32 @@
-2024-05-10 21:02:18,448 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:25:04,205 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:30:25,204 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:37:27,837 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:38:54,979 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:40:36,254 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:44:08,590 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:47:10,897 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:49:20,752 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:49:43,518 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:52:09,402 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:53:45,166 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:54:13,061 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:55:04,393 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-10 21:55:19,746 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-10 22:38:01,161 ERROR: Exception on /createposts [POST] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/indragultom/GroupProject/app/routes.py", line 113, in posting
+    maxslider = random.randint(sold_price + 1, 99999)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/random.py", line 336, in randint
+    return self.randrange(a, b+1)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/random.py", line 301, in randrange
+    istart = _index(start)
+             ^^^^^^^^^^^^^
+TypeError: 'float' object cannot be interpreted as an integer
+2024-05-10 22:39:28,185 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-10 22:40:44,035 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-10 22:41:05,332 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-10 22:41:23,346 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-10 22:41:36,419 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
