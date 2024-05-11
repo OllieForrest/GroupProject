@@ -61,3 +61,10 @@ class Post(db.Model):
     picture_name: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
     img: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
     mimetype:so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+
+class Guess(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    guessed_price = db.Column(db.Float)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

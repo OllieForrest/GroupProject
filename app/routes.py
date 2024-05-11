@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 import sqlalchemy as sa
 from app import app, db
 from app.forms import LoginForms, RegistrationForm
-from app.models import User
+from app.models import User, Guess
 from flask import render_template
 from datetime import datetime, timezone
 from flask import request
@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 from app.models import Post
 import base64
 import random
+from sqlalchemy import or_
 
 @app.route('/postingpage')
 def postpage():
@@ -29,8 +30,22 @@ def landingpage():
 def index():
     page = request.args.get('page', 1, type=int)
     per_page = 2
-    posts = Post.query.paginate(page=page, per_page=per_page)
-    return render_template('index.html', posts=posts)
+    guessed_posts_ids = [guess.post_id for guess in Guess.query.filter_by(user_id=current_user.id).all()]
+    posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=per_page)
+    query = request.args.get('query', None)
+
+
+    if query:
+        posts = Post.query.filter(
+            or_(
+                Post.description.ilike(f'%{query}%'), 
+                Post.item_name.ilike(f'%{query}%')
+            )
+        ).paginate(page=page, per_page=10)
+    else:
+        posts = Post.query.paginate(page=page, per_page=10)
+
+    return render_template('index.html', posts=posts, query=query)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -110,7 +125,8 @@ def posting():
         sold_price = float(request.form['soldPrice'])
         user_id = current_user.id  
         pic= request.files['picture']
-        maxslider = random.randint(int(sold_price) , 100001)
+        upper_limit = int(3.5 * (int(sold_price)))
+        maxslider = random.randint(int(sold_price) , upper_limit)
 
 
         if not pic:
@@ -159,26 +175,37 @@ def delete_post(post_id):
 
 @app.route('/search')
 def search():
-    query = request.args.get('query')  
+    query = request.args.get('query', '')
     if query:
-        matched_posts = Post.query.filter(Post.item_name.ilike(f'%{query}%')).all()
+        search_results = Post.query.filter(
+            or_(
+                Post.description.ilike(f'%{query}%'), 
+                Post.item_name.ilike(f'%{query}%')
+            )
+        ).all()
+        return render_template('results.html', posts=search_results)
     else:
-        matched_posts = Post.query.all()
-    return render_template('results.html', posts=matched_posts, query=query)
+        return redirect(url_for('index'))
 
 
 @app.route('/submit_guess/<int:post_id>', methods=['POST'])
 def submit_guess(post_id):
+    existing_guess = Guess.query.filter_by(user_id=current_user.id, post_id=post_id).first()
+    if existing_guess:
+        flash('You have already made a guess for this post.')
+        return redirect(url_for('index'))
+
     post = Post.query.get_or_404(post_id)
     guessed_price = float(request.form['guess_price'])
-    user = current_user
 
+    new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=guessed_price)
+    db.session.add(new_guess)
+    
     error = abs(post.sold_price - guessed_price)
-    points_awarded = max(0, 100 - int(error/100)) 
+    points_awarded = max(0, 100 - int(error / 100)) 
+    current_user.points += points_awarded
 
-    user.points += points_awarded
     db.session.commit()
-
     return redirect(url_for('index'))
 
 @app.route('/contact_us')

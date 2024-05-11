@@ -1,99 +1,140 @@
-2024-05-08 21:01:16,092 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 21:15:19,445 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 21:18:23,282 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 21:28:06,072 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 22:11:04,147 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 22:12:55,962 ERROR: Exception on /update_user [POST] [in /Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask/app.py:838]
+2024-05-11 18:21:12,207 ERROR: Exception on /login [POST] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.username
+sqlite3.OperationalError: no such column: user.points
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/GroupProject/app/routes.py", line 93, in edit_profile
-    db.session.commit()
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 597, in commit
-    return self._proxied.commit()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1972, in commit
-    trans.commit(_to_root=True)
-  File "<string>", line 2, in commit
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1257, in commit
-    self._prepare_impl()
-  File "<string>", line 2, in _prepare_impl
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1232, in _prepare_impl
-    self.session.flush()
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4296, in flush
-    self._flush(objects)
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4431, in _flush
-    with util.safe_reraise():
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4392, in _flush
-    flush_context.execute()
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
-    rec.execute(self)
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
-    _emit_update_statements(
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 912, in _emit_update_statements
-    c = connection.execute(
-        ^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1422, in execute
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 42, in login
+    user = db.session.scalar(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\scoping.py", line 1843, in scalar
+    return self._proxied.scalar(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2399, in scalar
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
     return meth(
            ^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 514, in _execute_on_connection
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
     return connection._execute_clauseelement(
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1644, in _execute_clauseelement
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
     ret = self._execute_context(
           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1850, in _execute_context
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
     return self._exec_single_context(
            ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1990, in _exec_single_context
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
     self._handle_dbapi_exception(
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2357, in _handle_dbapi_exception
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
-  File "/Users/indragultom/microblog/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
-[SQL: UPDATE user SET username=?, email=?, about_me=? WHERE user.id = ?]
-[parameters: ('indra', 'ngoajngaong@gmail.com', 'ngjabgnagaga', 7)]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)
-2024-05-08 22:13:40,046 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 22:56:20,823 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:02:10,946 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:02:49,677 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:04:14,423 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:06:26,331 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:07:59,187 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
-2024-05-08 23:13:35,501 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.points
+[SQL: SELECT user.id, user.username, user.email, user.password_hash, user.about_me, user.last_seen, user.points 
+FROM user 
+WHERE user.username = ?]
+[parameters: ('indra',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-05-11 18:21:20,519 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+Traceback (most recent call last):
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: post.maxslider
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 32, in index
+    posts = Post.query.paginate(page=page, per_page=per_page)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\query.py", line 98, in paginate
+    return QueryPagination(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 72, in __init__
+    items = self._query_items()
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 358, in _query_items
+    out = query.limit(self.per_page).offset(self._query_offset).all()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.maxslider
+[SQL: SELECT post.id AS post_id, post.item_name AS post_item_name, post.description AS post_description, post.category AS post_category, post.maxslider AS post_maxslider, post.condition AS post_condition, post.starting_price AS post_starting_price, post.sold_price AS post_sold_price, post.timestamp AS post_timestamp, post.user_id AS post_user_id, post.picture_name AS post_picture_name, post.img AS post_img, post.mimetype AS post_mimetype 
+FROM post
+ LIMIT ? OFFSET ?]
+[parameters: (2, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
