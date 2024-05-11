@@ -16,6 +16,7 @@ import base64
 import random
 from sqlalchemy import or_
 
+
 @app.route('/postingpage')
 def postpage():
     return render_template('createpost.html', title="Create User Post")
@@ -103,15 +104,29 @@ def leaderboard():
 @app.route('/update_user', methods=['GET','POST'])
 @login_required
 def edit_profile():
+
     username = request.form.get('username')
     about_me = request.form.get('about_me')
     email = request.form.get('email')
+    
+    if 'profile_image' in request.files:
+        file = request.files['profile_image']
+        if file:
 
+            image_data = file.read()
+            base64_encoded_data = base64.b64encode(image_data)
+            base64_message = base64_encoded_data.decode('utf-8')
+            
+            
+            current_user.img = base64_message
+            current_user.mimetype = file.mimetype  
+        
     current_user.username = username
     current_user.about_me = about_me
     current_user.email = email
+
     db.session.commit()
-    
+
     return redirect(url_for('my_account', username=current_user.username))
 
 @app.route('/createposts', methods=['POST'])

@@ -39,6 +39,12 @@
   h1 {
     font-size: 32px;
   }
+
+  .profile-image{
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+  }
 </style>
 
 <div class="container">
@@ -48,7 +54,12 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Account Details</h5>
-          <img src="{{ user.avatar(128) }}" class="img-fluid rounded-circle mb-3" alt="User Avatar">
+          {% if user.img %}
+            <img src="data:{{ user.mimetype }};base64,{{ user.img }}" class="img-fluid rounded-circle mb-3 profile-image" alt="User Avatar">
+          {% else %}
+            <img src="{{ user.avatar(128) }}" class="img-fluid rounded-circle mb-3 profile-image" alt="User Avatar">
+          {% endif %}
+
           <p class="card-text">Name: {{ user.username }}</p>
           <p class="card-text">Email: {{ user.email }}</p>
           {% if user.about_me %}
@@ -71,8 +82,13 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form id="editAccountForm" action="/update_user" method="POST">
+
+                  <form id="editAccountForm" action="/update_user" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
+                      <div class="form-group">
+                        <label for="profileImage">Profile Image:</label>
+                        <input type="file" name="profile_image" class="form-control" id="profileImage" name=picture>
+                    </div>
                       <label for="inputName">Username:</label>
                       <input type="text" name="username" class="form-control" id="inputName" placeholder="Enter your username" required>
                     </div>
