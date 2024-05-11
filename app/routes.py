@@ -1,5 +1,5 @@
 from urllib.parse import urlsplit
-from flask import render_template, flash, redirect, url_for, request
+from flask import abort, render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 import sqlalchemy as sa
 from app import app, db
@@ -13,6 +13,7 @@ from flask import redirect, url_for
 from werkzeug.utils import secure_filename
 from app.models import Post
 import base64
+import random
 
 @app.route('/postingpage')
 def postpage():
@@ -26,8 +27,11 @@ def landingpage():
 
 @app.route('/index')
 def index():
-    all_posts = Post.query.all()
-    return render_template('index.html', posts=all_posts)
+    page = request.args.get('page', 1, type=int)
+    per_page = 2
+    posts = Post.query.paginate(page=page, per_page=per_page)
+    return render_template('index.html', posts=posts)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,7 +55,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('landingpage'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -60,7 +64,7 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, points = 0)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -103,17 +107,19 @@ def posting():
         category = request.form['category']
         condition = request.form['condition']
         starting_price = float(request.form['startingPrice'])
+        sold_price = float(request.form['soldPrice'])
         user_id = current_user.id  
         pic= request.files['picture']
+        maxslider = random.randint(int(sold_price) , 100001)
+
 
         if not pic:
             return "No pic uploaded", 400
         
         filename= secure_filename(pic.filename)
         mimetype = pic.mimetype
-        img = pic.read()  # Read image data
+        img = pic.read()  
         
-        # Store the image data as base64 encoded string
         img_base64 = base64.b64encode(img).decode("utf-8")
         
         new_post = Post(
@@ -124,14 +130,16 @@ def posting():
             starting_price=starting_price,
             user_id=user_id,
             picture_name=filename,
-            img=img_base64,  # Store base64 encoded image
+            img=img_base64,  
             mimetype=mimetype,
-            author=current_user
+            author=current_user,
+            sold_price= sold_price,
+            maxslider = maxslider
         )
         db.session.add(new_post)
         db.session.commit()
         flash('Congratulations, you have posted!')
-        return redirect(url_for('index'))  # Corrected redirect call
+        return redirect(url_for('index')) 
 
 @app.before_request
 def before_request():
@@ -139,3 +147,40 @@ def before_request():
         current_user.last_seen = datetime.now(timezone.utc)
         db.session.commit()
 
+@app.route('/delete_post/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    post = Post.query.get(post_id)
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+    else:
+        flash('Post not found.', 'error')
+    return redirect(url_for('index'))
+
+@app.route('/search')
+def search():
+    query = request.args.get('query')  
+    if query:
+        matched_posts = Post.query.filter(Post.item_name.ilike(f'%{query}%')).all()
+    else:
+        matched_posts = Post.query.all()
+    return render_template('results.html', posts=matched_posts, query=query)
+
+
+@app.route('/submit_guess/<int:post_id>', methods=['POST'])
+def submit_guess(post_id):
+    post = Post.query.get_or_404(post_id)
+    guessed_price = float(request.form['guess_price'])
+    user = current_user
+
+    error = abs(post.sold_price - guessed_price)
+    points_awarded = max(0, 100 - int(error/100)) 
+
+    user.points += points_awarded
+    db.session.commit()
+
+    return redirect(url_for('index'))
+
+@app.route('/contact_us')
+def contact_us():
+    return render_template('contactus.html', title="Contact Us")

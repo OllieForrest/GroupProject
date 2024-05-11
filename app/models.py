@@ -22,6 +22,8 @@ class User(UserMixin, db.Model):
     
     last_seen: so.Mapped[Optional[datetime]] = so.mapped_column(
         default=lambda: datetime.now(timezone.utc))
+    
+    points: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -47,8 +49,10 @@ class Post(db.Model):
     item_name: so.Mapped[str] = so.mapped_column(sa.String(100))
     description: so.Mapped[str] = so.mapped_column(sa.String(280))
     category: so.Mapped[str] = so.mapped_column(sa.String(50))
+    maxslider: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
     condition: so.Mapped[str] = so.mapped_column(sa.String(50))
     starting_price: so.Mapped[float] = so.mapped_column(sa.Float)
+    sold_price: so.Mapped[float] = so.mapped_column(sa.Float)
     timestamp: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id),
