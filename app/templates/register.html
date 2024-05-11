@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="col-md-6">
             <div class="card mt-5">
                 <div class="card-body">
@@ -10,33 +10,33 @@
                     <form action="" method="post">
                         {{ form.hidden_tag() }}
                         <div class="form-floating mb-3">
-                            {{ form.username.label(class="form-label") }}
-                            {{ form.username(class="form-control") }}
+                            {{ form.username.label(class="form-label", id="username-label") }}
+                            {{ form.username(class="form-control", id="username-input") }}
+                            {% for error in form.username.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        {% for error in form.username.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
                         <div class="form-floating mb-3">
-                            {{ form.email.label(class="form-label") }}
-                            {{ form.email(class="form-control") }}
+                            {{ form.email.label(class="form-label", id="email-label") }}
+                            {{ form.email(class="form-control", id="email-input") }}
+                            {% for error in form.email.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        {% for error in form.email.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
                         <div class="form-floating mb-3">
-                            {{ form.password.label(class="form-label") }}
-                            {{ form.password(class="form-control") }}
+                            {{ form.password.label(class="form-label", id="password-label") }}
+                            {{ form.password(class="form-control", id="password-input") }}
+                            {% for error in form.password.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        {% for error in form.password.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
                         <div class="form-floating mb-3">
-                            {{ form.password2.label(class="form-label") }}
-                            {{ form.password2(class="form-control") }}
+                            {{ form.password2.label(class="form-label", id="password2-label") }}
+                            {{ form.password2(class="form-control", id="password2-input") }}
+                            {% for error in form.password2.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        {% for error in form.password2.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                        {% endfor %}
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">Register</button>
                         </div>
@@ -46,4 +46,47 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Attach event listener to username input field
+    document.getElementById("username-input").addEventListener("input", function() {
+        var label = document.getElementById("username-label");
+        if (this.value === "") {
+            label.innerHTML = "Username";
+        } else {
+            label.innerHTML = "";
+        }
+    });
+
+    // Attach event listener to email input field
+    document.getElementById("email-input").addEventListener("input", function() {
+        var label = document.getElementById("email-label");
+        if (this.value === "") {
+            label.innerHTML = "Email";
+        } else {
+            label.innerHTML = "";
+        }
+    });
+
+    // Attach event listener to password input field
+    document.getElementById("password-input").addEventListener("input", function() {
+        var label = document.getElementById("password-label");
+        if (this.value === "") {
+            label.innerHTML = "Password";
+        } else {
+            label.innerHTML = "";
+        }
+    });
+
+    // Attach event listener to password2 input field
+    document.getElementById("password2-input").addEventListener("input", function() {
+        var label = document.getElementById("password2-label");
+        if (this.value === "") {
+            label.innerHTML = "Confirm Password";
+        } else {
+            label.innerHTML = "";
+        }
+    });
+</script>
+
 {% endblock %}

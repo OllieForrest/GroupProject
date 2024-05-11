@@ -1,19 +1,126 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
 
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center mt-5">
-            <h1>Welcome to ValueCheck Group Project</h1>
-            <p class="lead">Guess the price correctly and earn points!</p>
-          </div>
+<style>
+    .post {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #000000; /* Default border color */
+        transition: border-color 0.2s; /* Smooth transition for the border color */
+    }
+    .post:hover {
+        border-color: white; /* Changes the border to white on hover */
+    }
+    .post h2 {
+        color: #FFCDB2;
+    }
+    .post p {
+        font-size: 16px;
+        color: white;
+    }
+    .post img {
+        width: 100%;  /* makes the image expand to fill the width of its container */
+        height: auto; /* scales the height according to the width while maintaining aspect ratio */
+        max-width: 300px; /* maximum width of the image */
+        max-height: 300px; /* maximum height of the image */
+    }
+    .delete-btn {
+        padding: 5px 10px;
+        background-color: #3d324e;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background-color: rgb(43, 27, 48);
+    }
+    .guess-value {
+        width: 160px; 
+        text-align: center; 
+        margin: 10px auto; 
+        display: block; 
+    }
+</style>
+
+<div class="container mt-8">
+    <div class="row">
+        <div class="col-lg-12 text-center mt-5">
+            {% if query %}
+                <h2>Search Results for "{{ query }}"</h2>
+                <p class="lead">Explore the items that match your search!</p>
+            {% else %}
+                <h2>Welcome, {{ current_user.username }}!</h2>
+                <p class="lead">Guess the price correctly and earn points!</p>
+                <p>Guess The Prices!!:</p>
+            {% endif %}
         </div>
-      </div>
+    </div>
+</div>
 
+<div class="container mt-5">
+    <form class="d-flex mb-3" action="{{ url_for('index') }}" method="GET">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+</div>
+
+{% if posts %}
     {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    <div class="post">
+        <div class="text-center">
+            <h2>{{ post.item_name }}</h2>
+            {% if post.img %}
+            <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
+            {% else %}
+            <p>No Image Available</p>
+            {% endif %}
+        </div>
+        <p>About this item: {{ post.description }}</p>
+        <p>Category: {{ post.category }}</p>
+        <p>Condition: {{ post.condition }}</p>
+        <p>Retail Price: ${{ post.starting_price }}</p>
+        <p>Sold Price: ${{ post.sold_price }}</p>
+        {% if current_user == post.author %}
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
+        </form>
+        {% else %}
+        <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
+            <div class="form-group">
+                <label for="guess">Guess the Price:</label>
+                <input type="range" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" name="guess_price" onchange="updateGuess(this, value)">
+                <input type="text" class="form-control guess-value" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Guess</button>
+        </form>
+        {% endif %}
+    </div>
     {% endfor %}
-{% endblock %}
+{% else %}
+    <div class="text-center">
+        <p>{% if query %}No results found for "{{ query }}". Try another search!{% else %}You have guessed all available posts.{% endif %}</p>
+    </div>
+{% endif %}
 
+<div class="text-center mt-5">
+    {% if posts.has_prev %}
+        <a href="{{ url_for('index', page=posts.prev_num, query=query) }}" class="btn btn-primary">Previous</a>
+    {% endif %}
+    Page {{ posts.page }} of {{ posts.pages }}
+    {% if posts.has_next %}
+        <a href="{{ url_for('index', page=posts.next_num, query=query) }}" class="btn btn-primary">Next</a>
+    {% endif %}
+</div>
+
+<script>
+    function updateGuess(slider, value) {
+        var parentDiv = slider.closest('.form-group');
+        parentDiv.querySelector('.guess-value').value = '$' + value;
+        var maxSliderValue = parseInt(slider.max);
+        slider.step = maxSliderValue / 100;
+    }
+</script>
+
+{% endblock %}

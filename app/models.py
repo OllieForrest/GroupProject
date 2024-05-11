@@ -5,6 +5,7 @@ import sqlalchemy.orm as so
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
+from hashlib import md5
 
 
 class User(UserMixin, db.Model):
@@ -17,6 +18,12 @@ class User(UserMixin, db.Model):
 
     posts: so.WriteOnlyMapped['Post'] = so.relationship(
         back_populates='author')
+    about_me: so.Mapped[Optional[str]] = so.mapped_column(sa.String(140))
+    
+    last_seen: so.Mapped[Optional[datetime]] = so.mapped_column(
+        default=lambda: datetime.now(timezone.utc))
+    
+    points: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -26,6 +33,10 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
 
 
 @login.user_loader
@@ -35,10 +46,25 @@ def load_user(id):
 
 class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    body: so.Mapped[str] = so.mapped_column(sa.String(140))
+    item_name: so.Mapped[str] = so.mapped_column(sa.String(100))
+    description: so.Mapped[str] = so.mapped_column(sa.String(280))
+    category: so.Mapped[str] = so.mapped_column(sa.String(50))
+    maxslider: so.Mapped[int] = so.mapped_column(sa.Integer, default=0)
+    condition: so.Mapped[str] = so.mapped_column(sa.String(50))
+    starting_price: so.Mapped[float] = so.mapped_column(sa.Float)
+    sold_price: so.Mapped[float] = so.mapped_column(sa.Float)
     timestamp: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id),
                                                index=True)
-
     author: so.Mapped[User] = so.relationship(back_populates='posts')
+    picture_name: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+    img: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+    mimetype:so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+
+class Guess(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    guessed_price = db.Column(db.Float)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
