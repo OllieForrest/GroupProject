@@ -27,23 +27,23 @@ def landingpage():
 
 
 @app.route('/index')
+@login_required
 def index():
     page = request.args.get('page', 1, type=int)
-    per_page = 2
-    guessed_posts_ids = [guess.post_id for guess in Guess.query.filter_by(user_id=current_user.id).all()]
-    posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=per_page)
     query = request.args.get('query', None)
 
+    guessed_posts_ids = [guess.post_id for guess in Guess.query.filter_by(user_id=current_user.id).all()]
 
     if query:
         posts = Post.query.filter(
+            Post.id.notin_(guessed_posts_ids),
             or_(
                 Post.description.ilike(f'%{query}%'), 
                 Post.item_name.ilike(f'%{query}%')
             )
         ).paginate(page=page, per_page=10)
     else:
-        posts = Post.query.paginate(page=page, per_page=10)
+        posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=10)
 
     return render_template('index.html', posts=posts, query=query)
 
@@ -189,23 +189,22 @@ def search():
 
 
 @app.route('/submit_guess/<int:post_id>', methods=['POST'])
+@login_required
 def submit_guess(post_id):
-    existing_guess = Guess.query.filter_by(user_id=current_user.id, post_id=post_id).first()
-    if existing_guess:
-        flash('You have already made a guess for this post.')
-        return redirect(url_for('index'))
-
     post = Post.query.get_or_404(post_id)
-    guessed_price = float(request.form['guess_price'])
+    user_guess = float(request.form['guess_price'])
+    actual_price = post.sold_price  
 
-    new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=guessed_price)
-    db.session.add(new_guess)
-    
-    error = abs(post.sold_price - guessed_price)
-    points_awarded = max(0, 100 - int(error / 100)) 
+    error = abs(actual_price - user_guess)
+    points_awarded = max(0, 100 - int(error / 100))  
+
     current_user.points += points_awarded
-
     db.session.commit()
+
+    new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=user_guess)
+    db.session.add(new_guess)
+    db.session.commit()
+
     return redirect(url_for('index'))
 
 @app.route('/contact_us')
