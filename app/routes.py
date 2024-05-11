@@ -96,7 +96,8 @@ def my_account(username):
 
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard_1.html', title='Leaderboard')
+    users = User.query.order_by(User.points.desc()).all()
+    return render_template('leaderboard_1.html', users=users)
 
 
 @app.route('/update_user', methods=['GET','POST'])

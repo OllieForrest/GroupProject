@@ -1,72 +1,67 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <style>
-        .leaderboard-table {
-          border-radius: 30px;
-          box-shadow: 0px 5px 15px 8px #f3afe5;
-          margin-top: 20px;
-          padding: 20px;
-          font-family: Arial;
-        }
-      </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
 
-  <!-- Leaderboard Table -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h2 class="text-center" > Leaderboard </h2> 
-        <h5 class="text-center mt-4">Total Scores of the Game</h5> 
-        <table class="table table-hover leaderboard-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Username</th>
-              <th scope="col">Name</th>
-              <th scope="col">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Sample Data -->
-            <tr>
-              <th scope="row">1</th>
-              <td>user123</td>
-              <td>Banana Lady</td>
-              <td>1500</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>user456</td>
-              <td>Jane Doe</td>
-              <td>1450</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>user789</td>
-              <td>Mark Harris</td>
-              <td>1400</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>user598</td>
-              <td>John Cooke</td>
-              <td>1250</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>user696</td>
-              <td>Jamie May</td>
-              <td>1100</td>
-            </tr>
-            <!-- Add more users as needed -->
-          </tbody>
-        </table>
-      </div>
+<div class="container mt-4">
+  <h1 class="text-center">Leaderboard</h1>
+  <div class="list-group">
+
+    <div class="list-group-item list-group-item-secondary d-flex justify-content-between">
+      <strong># Rank</strong>
+      <strong>Username</strong>
+      <strong>Points</strong>
     </div>
+      {% for user in users %}
+        <a href="{{ url_for('my_account', username=user.username) }}"
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          {{ loop.index }}. {{ user.username }}
+            <span class="badge badge-primary badge-pill">
+           {{ user.points or 'No points available' }}
+          </span>
+      </a>
+      {% endfor %}
   </div>
+</div>
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    .list-group-item {
+        transition: transform 0.3s;
+        cursor: pointer;
+    }
+
+    .list-group-item:hover {
+        transform: scale(1.03);
+        background-color: #f8f9fa;
+    }
+
+    .badge {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .badge:hover {
+        background-color: #007bff;
+        transform: scale(1.1);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        color: #007bff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-pill {
+        color: #ffffff; 
+        background-color: #007bff; 
+        font-size: 1rem; 
+        padding: 0.25em 0.6em; 
+        border-radius: 10px; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 {% endblock %}

@@ -1,10 +1,10 @@
-2024-05-11 18:24:56,165 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+2024-05-11 18:30:33,318 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: post
+sqlite3.OperationalError: no such column: post.maxslider
 
 The above exception was the direct cause of the following exception:
 
@@ -68,18 +68,47 @@ Traceback (most recent call last):
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: post
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.maxslider
 [SQL: SELECT post.id AS post_id, post.item_name AS post_item_name, post.description AS post_description, post.category AS post_category, post.maxslider AS post_maxslider, post.condition AS post_condition, post.starting_price AS post_starting_price, post.sold_price AS post_sold_price, post.timestamp AS post_timestamp, post.user_id AS post_user_id, post.picture_name AS post_picture_name, post.img AS post_img, post.mimetype AS post_mimetype 
 FROM post
  LIMIT ? OFFSET ?]
 [parameters: (2, 0)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
-2024-05-11 18:26:51,351 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:27:15,989 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:27:18,629 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:28:12,278 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:29:58,871 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:29:59,628 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:30:00,402 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:30:06,935 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:30:13,162 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:31:27,330 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:31:31,837 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:31:37,224 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:31:50,749 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 19:09:43,593 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 19:14:36,257 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 19:18:50,835 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 19:20:49,612 ERROR: Exception on /createposts [POST] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+Traceback (most recent call last):
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 114, in posting
+    maxslider = random.randint(int(sold_price) , upper_limit)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\random.py", line 336, in randint
+    return self.randrange(a, b+1)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\random.py", line 312, in randrange
+    istop = _index(stop)
+            ^^^^^^^^^^^^
+TypeError: 'float' object cannot be interpreted as an integer
+2024-05-11 19:21:36,225 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 20:16:14,339 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 20:16:22,169 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 20:24:27,811 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
