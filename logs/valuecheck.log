@@ -34,3 +34,5 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'
 2024-05-12 15:49:46,596 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-12 15:50:35,012 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
 2024-05-12 15:52:02,441 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-12 15:55:56,346 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-13 00:20:30,317 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
