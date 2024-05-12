@@ -190,7 +190,7 @@
 
         <nav class="navbar">
             {% if current_user.is_anonymous %}
-            <a href="#">About</a>
+            <a href="{{ url_for('about')}}">About</a>
             <a href="{{ url_for('contact_us')}}">Contact</a>
             {% else %}
             <a href="{{ url_for('index')}}" class="active">Home</a>

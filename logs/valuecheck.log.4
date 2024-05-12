@@ -1,4 +1,5 @@
-2024-05-11 20:24:31,831 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+2024-05-12 01:28:43,216 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:28:54,963 ERROR: Exception on /leaderboard [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,9 +13,61 @@ Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 34, in index
-    return render_template('index.html', posts=posts)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 100, in leaderboard
+    return render_template('leaderboard_1.html', users=users, title='Leaderboard')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\gulto\project\GroupProject\app\templates\base.html", line 137, in top-level template code
+    {% block content %}
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 9, in block 'content'
+    <a href="{{ url_for('user_profile', username=user.username) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'user_profile' with values ['username']. Did you mean 'edit_profile' instead?
+2024-05-12 01:34:54,478 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:36:09,209 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:38:06,981 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:40:05,426 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:44:35,224 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:45:55,997 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:48:17,658 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:49:45,839 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:49:59,723 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:50:01,680 ERROR: Exception on /leaderboard [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+Traceback (most recent call last):
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 102, in leaderboard
+    return render_template('leaderboard_1.html', users=users)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
     template = app.jinja_env.get_or_select_template(template_name_or_list)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,58 +87,29 @@ Traceback (most recent call last):
     self.handle_exception(source=source_hint)
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "C:\Users\gulto\project\GroupProject\app\templates\index.html", line 103, in template
-    <a href="{{ url_for('index', page=posts.next_num) }}" class="btn btn-primary
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
-2024-05-11 20:25:17,418 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:32:23,770 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:32:40,224 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:32:51,104 ERROR: Exception on /search [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
-Traceback (most recent call last):
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 173, in search
-    return render_template('search_results.html', posts=search_results)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1084, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1013, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 972, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
-    source, filename, uptodate = self.get_source(environment, name)
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
-    return self._get_source_fast(environment, template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: search_results.html
-2024-05-11 20:33:43,713 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:34:43,065 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:41:25,198 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:48:48,796 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:10:56,094 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:16:13,535 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:18:04,772 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:19:51,866 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:21:47,777 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 21:30:21,321 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 60, in template
+    {% endblock %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2024-05-12 01:50:29,278 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:52:06,800 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:52:49,500 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:55:39,358 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:56:41,329 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:58:43,998 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:01:50,719 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:02:46,460 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:04:13,983 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:12:02,208 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:15:20,438 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:20:28,106 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:20:31,716 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:28:52,331 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:33:32,595 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:33:37,026 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:35:39,056 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:35:41,819 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:39:59,808 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:42:37,109 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:43:28,120 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:52:13,372 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:56:15,824 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
