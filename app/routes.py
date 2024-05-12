@@ -17,6 +17,20 @@ import random
 from sqlalchemy import or_
 from flask import jsonify
 
+def get_user_rank(points):
+    if points < 100:
+        return {"name": "Silver", "icon": "silver-medal.png"}
+    elif points < 200:
+        return {"name": "Gold", "icon": "gold.png"}
+    elif points < 300:
+        return {"name": "Platinum", "icon": "platinum.png"}
+    elif points < 400:
+        return {"name": "Sapphire", "icon": "saph.png"}
+    elif points < 500:
+        return {"name": "Emerald", "icon": "img_icons8.png"}  # Assuming this is the emerald icon
+    else:
+        return {"name": "Champion", "icon": "crown.png"}  # Assuming a placeholder for Champion
+
 
 @app.route('/postingpage')
 def postpage():
@@ -94,7 +108,9 @@ def register():
 @login_required
 def my_account(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
-    return render_template('account.html', title='My Account', user=user)
+    rank = get_user_rank(user.points)  # Calculate the user's rank based on their points
+    return render_template('account.html', title='My Account', user=user, rank=rank['name'], icon=url_for('static', filename=rank['icon']))
+
 
 @app.route('/leaderboard')
 def leaderboard():

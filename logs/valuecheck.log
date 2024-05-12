@@ -24,3 +24,48 @@
 2024-05-12 21:28:31,506 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
 2024-05-12 21:30:29,235 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
 2024-05-12 21:30:47,733 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 15:41:09,959 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/indragultom/GroupProject/app/routes.py", line 44, in search
+    return redirect(url_for('index'))
+                    ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/helpers.py", line 220, in url_for
+    return current_app.url_for(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/map.py", line 926, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
+2024-05-12 15:49:36,001 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-12 15:49:46,596 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-12 15:50:35,012 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-12 15:52:02,441 INFO: ValueCheck startup [in /Users/indragultom/GroupProject/app/__init__.py:52]
+2024-05-12 16:39:14,547 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 16:43:51,878 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 16:51:41,640 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 16:52:19,867 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 17:05:35,488 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 17:07:38,594 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 17:09:38,601 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 17:10:29,162 INFO: ValueCheck startup [in C:\Users\conac\OneDrive\Desktop\webydevy\GroupProject\app\__init__.py:52]
+2024-05-12 21:39:58,990 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]

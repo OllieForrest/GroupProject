@@ -120,7 +120,7 @@
         <p> </p>
         <!-- Add any desired statistics here -->
         <p class="card-text" id="points">Points: {{ user.points }}</p>
-        <p class="card-text">Ranking: {{ user.ranking }}</p>
+        <p class="card-text">Rank: {{ rank }} <img src="{{ icon }}" alt="Rank Icon" style="width: 30px; height: 30px;"></p>
         <p class="card-text">Achievements: {{ user.achievements|length }} achievements</p>
         <!-- Add more statistics as needed -->
       </div>
