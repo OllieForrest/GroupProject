@@ -4,37 +4,42 @@
 
 <style>
     .post {
-        margin: 20px;
+        margin: 20px auto;
         padding: 20px;
-        border: 1px solid #000000; 
-        transition: border-color 0.2s; 
+        border-radius: 8px;
+        background-color: #EEF5DB; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease; 
     }
     .post:hover {
-        border-color: white; 
-    }
-    .post h2 {
-        color: #FFCDB2;
-    }
-    .post p {
-        font-size: 16px;
-        color: white;
+        transform: translateY(-5px); 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
     }
     .post img {
         width: 100%;  
         height: auto; 
         max-width: 300px; 
-        max-height: 300px; 
+        max-height: 300px;
+        object-fit: cover; 
+        border-radius: 4px; 
+    }
+    .post h2 {
+        color: #7A9E9F; 
+    }
+    .post p {
+        font-size: 16px;
+        color: #4F6367; 
     }
     .delete-btn {
         padding: 5px 10px;
-        background-color: #3d324e;
-        color: rgb(255, 255, 255);
+        background-color: #b84a57; 
+        color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
     }
     .delete-btn:hover {
-        background-color: rgb(43, 27, 48);
+        background-color: #992d3f; 
     }
     .guess-value {
         width: 160px; 
@@ -114,6 +119,8 @@
     {% endif %}
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     function updateGuess(slider, value) {
         var parentDiv = slider.closest('.form-group');
@@ -121,6 +128,30 @@
         var maxSliderValue = parseInt(slider.max);
         slider.step = maxSliderValue / 100;
     }
+
+    $(document).ready(function() {
+        $('.post form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    if (response.message) {
+                        alert("Success: " + response.message);
+                    } else {
+                        alert("Success: Your guess has been submitted.");
+                    }
+                    window.location.reload();  // Reload the page to update the view
+                },
+                error: function(xhr, status, error) {
+                    alert("Error: " + xhr.responseText);
+                }
+            });
+        });
+    });
 </script>
+
 
 {% endblock %}

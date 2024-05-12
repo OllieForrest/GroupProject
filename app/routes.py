@@ -15,6 +15,7 @@ from app.models import Post
 import base64
 import random
 from sqlalchemy import or_
+from flask import jsonify
 
 
 @app.route('/postingpage')
@@ -28,7 +29,7 @@ def landingpage():
 
 
 @app.route('/index')
-@login_required
+@login_required    
 def index():
     page = request.args.get('page', 1, type=int)
     query = request.args.get('query', None)
@@ -42,7 +43,7 @@ def index():
                 Post.description.ilike(f'%{query}%'), 
                 Post.item_name.ilike(f'%{query}%')
             )
-        ).paginate(page=page, per_page=10)
+        ).paginate(page=page, per_page=2)
     else:
         posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=10)
 
@@ -207,22 +208,36 @@ def search():
 @app.route('/submit_guess/<int:post_id>', methods=['POST'])
 @login_required
 def submit_guess(post_id):
-    post = Post.query.get_or_404(post_id)
-    user_guess = float(request.form['guess_price'])
-    actual_price = post.sold_price  
+    post = Post.query.get_or_404(post_id)  
+    try:
+        user_guess = float(request.form.get('guess_price', 0))  
+        actual_price = post.sold_price
 
-    error = abs(actual_price - user_guess)
-    points_awarded = max(0, 100 - int(error / 100))  
+        error = abs(actual_price - user_guess)
+        points_awarded = max(0, 100 - int(error))
 
-    current_user.points += points_awarded
-    db.session.commit()
+        current_user.points += points_awarded
+        db.session.commit()
 
-    new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=user_guess)
-    db.session.add(new_guess)
-    db.session.commit()
+        new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=user_guess)
+        db.session.add(new_guess)
+        db.session.commit()
 
-    return redirect(url_for('index'))
+        message = f"Your guess was ${user_guess:.2f}. You were off by ${error:.2f}. Points awarded: {points_awarded}."
+        return jsonify({'message': message, 'points_awarded': points_awarded}), 200
+
+    except ValueError:
+        return jsonify({'error': 'Invalid input for guess price.'}), 400
+    except Exception as e:
+        print(str(e))
+        return jsonify({'error': 'There was an issue processing your guess. Please try again.'}), 500
+
+
 
 @app.route('/contact_us')
 def contact_us():
     return render_template('contactus.html', title="Contact Us")
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')

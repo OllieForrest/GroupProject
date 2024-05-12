@@ -1,10 +1,10 @@
-2024-05-11 18:21:21,305 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+2024-05-11 18:24:56,165 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: post.maxslider
+sqlite3.OperationalError: no such table: post
 
 The above exception was the direct cause of the following exception:
 
@@ -68,73 +68,18 @@ Traceback (most recent call last):
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.maxslider
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: post
 [SQL: SELECT post.id AS post_id, post.item_name AS post_item_name, post.description AS post_description, post.category AS post_category, post.maxslider AS post_maxslider, post.condition AS post_condition, post.starting_price AS post_starting_price, post.sold_price AS post_sold_price, post.timestamp AS post_timestamp, post.user_id AS post_user_id, post.picture_name AS post_picture_name, post.img AS post_img, post.mimetype AS post_mimetype 
 FROM post
  LIMIT ? OFFSET ?]
 [parameters: (2, 0)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
-2024-05-11 18:21:31,265 ERROR: Exception on /login [POST] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
-Traceback (most recent call last):
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: user.points
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 42, in login
-    user = db.session.scalar(
-           ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\scoping.py", line 1843, in scalar
-    return self._proxied.scalar(
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2399, in scalar
-    return self._execute_internal(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
-    result = conn.execute(
-             ^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
-    return meth(
-           ^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
-    return self._exec_single_context(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.points
-[SQL: SELECT user.id, user.username, user.email, user.password_hash, user.about_me, user.last_seen, user.points 
-FROM user 
-WHERE user.username = ?]
-[parameters: ('indra',)]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-05-11 18:26:51,351 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:27:15,989 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:27:18,629 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:28:12,278 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:29:58,871 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:29:59,628 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:30:00,402 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:30:06,935 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-11 18:30:13,162 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]

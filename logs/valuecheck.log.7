@@ -1,10 +1,10 @@
-2024-05-11 18:24:37,557 ERROR: Exception on /register [POST] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+2024-05-11 21:30:23,949 ERROR: Exception on / [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: user
+sqlite3.OperationalError: no such column: user.about_me
 
 The above exception was the direct cause of the following exception:
 
@@ -15,36 +15,44 @@ Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 66, in register
-    if form.validate_on_submit():
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_wtf\form.py", line 86, in validate_on_submit
-    return self.is_submitted() and self.validate(extra_validators=extra_validators)
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\wtforms\form.py", line 329, in validate
-    return super().validate(extra)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\wtforms\form.py", line 146, in validate
-    if not field.validate(self, extra):
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\wtforms\fields\core.py", line 246, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\wtforms\fields\core.py", line 266, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\gulto\project\GroupProject\app\forms.py", line 25, in validate_username
-    user = db.session.scalar(sa.select(User).where(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\scoping.py", line 1843, in scalar
-    return self._proxied.scalar(
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2399, in scalar
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 878, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1253, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 162, in before_request
+    if current_user.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\werkzeug\local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\werkzeug\local.py", line 526, in _get_current_object
+    return get_name(local())
+                    ^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_login\utils.py", line 25, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+                                      ^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_login\utils.py", line 370, in _get_user
+    current_app.login_manager._load_user()
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_login\login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\models.py", line 44, in load_user
+    return db.session.get(User, int(id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\scoping.py", line 1060, in get
+    return self._proxied.get(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 3682, in get
+    return self._get_impl(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 3862, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\loading.py", line 694, in load_on_pk_identity
+    session.execute(
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
     return self._execute_internal(
            ^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
@@ -73,9 +81,9 @@ Traceback (most recent call last):
     self.dialect.do_execute(
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
-[SQL: SELECT user.id, user.username, user.email, user.password_hash, user.about_me, user.last_seen, user.points 
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.about_me
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user.points AS user_points 
 FROM user 
-WHERE user.username = ?]
-[parameters: ('gultom',)]
+WHERE user.id = ?]
+[parameters: (6,)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)

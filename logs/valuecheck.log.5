@@ -1,13 +1,5 @@
-2024-05-11 18:30:33,318 ERROR: Exception on /index [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
-Traceback (most recent call last):
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: post.maxslider
-
-The above exception was the direct cause of the following exception:
-
+2024-05-12 01:28:43,216 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:28:54,963 ERROR: Exception on /leaderboard [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
 Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
@@ -21,94 +13,103 @@ Traceback (most recent call last):
   File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 32, in index
-    posts = Post.query.paginate(page=page, per_page=per_page)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\query.py", line 98, in paginate
-    return QueryPagination(
-           ^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 72, in __init__
-    items = self._query_items()
-            ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_sqlalchemy\pagination.py", line 358, in _query_items
-    out = query.limit(self.per_page).offset(self._query_offset).all()
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2673, in all
-    return self._iter().all()  # type: ignore
-           ^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2827, in _iter
-    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-                                                  ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
-    return self._execute_internal(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2236, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
-    result = conn.execute(
-             ^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
-    return meth(
-           ^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
-    return connection._execute_clauseelement(
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 100, in leaderboard
+    return render_template('leaderboard_1.html', users=users, title='Leaderboard')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\gulto\project\GroupProject\app\templates\base.html", line 137, in top-level template code
+    {% block content %}
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 9, in block 'content'
+    <a href="{{ url_for('user_profile', username=user.username) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'user_profile' with values ['username']. Did you mean 'edit_profile' instead?
+2024-05-12 01:34:54,478 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:36:09,209 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:38:06,981 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:40:05,426 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:44:35,224 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:45:55,997 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:48:17,658 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:49:45,839 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:49:59,723 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:50:01,680 ERROR: Exception on /leaderboard [GET] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
+Traceback (most recent call last):
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 102, in leaderboard
+    return render_template('leaderboard_1.html', users=users)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
-    return self._exec_single_context(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.maxslider
-[SQL: SELECT post.id AS post_id, post.item_name AS post_item_name, post.description AS post_description, post.category AS post_category, post.maxslider AS post_maxslider, post.condition AS post_condition, post.starting_price AS post_starting_price, post.sold_price AS post_sold_price, post.timestamp AS post_timestamp, post.user_id AS post_user_id, post.picture_name AS post_picture_name, post.img AS post_img, post.mimetype AS post_mimetype 
-FROM post
- LIMIT ? OFFSET ?]
-[parameters: (2, 0)]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
-2024-05-11 18:31:27,330 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:31:31,837 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:31:37,224 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 18:31:50,749 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 19:09:43,593 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 19:14:36,257 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 19:18:50,835 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 19:20:49,612 ERROR: Exception on /createposts [POST] [in C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py:838]
-Traceback (most recent call last):
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask\app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\gulto\project\GroupProject\app\routes.py", line 114, in posting
-    maxslider = random.randint(int(sold_price) , upper_limit)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python312\Lib\random.py", line 336, in randint
-    return self.randrange(a, b+1)
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python312\Lib\random.py", line 312, in randrange
-    istop = _index(stop)
-            ^^^^^^^^^^^^
-TypeError: 'float' object cannot be interpreted as an integer
-2024-05-11 19:21:36,225 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:16:14,339 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:16:22,169 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
-2024-05-11 20:24:27,811 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\gulto\project\GroupProject\venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\gulto\project\GroupProject\app\templates\leaderboard_1.html", line 60, in template
+    {% endblock %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2024-05-12 01:50:29,278 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:52:06,800 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:52:49,500 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:55:39,358 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:56:41,329 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 01:58:43,998 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:01:50,719 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:02:46,460 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:04:13,983 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:12:02,208 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:15:20,438 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:20:28,106 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:20:31,716 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:28:52,331 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:33:32,595 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:33:37,026 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:35:39,056 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:35:41,819 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:39:59,808 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:42:37,109 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:43:28,120 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:52:13,372 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
+2024-05-12 02:56:15,824 INFO: ValueCheck startup [in C:\Users\gulto\project\GroupProject\app\__init__.py:52]
