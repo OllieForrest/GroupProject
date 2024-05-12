@@ -3,49 +3,58 @@
 {% block content %}
 
 <style>
+    
     .post {
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 8px;
-        background-color: #EEF5DB; 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: all 0.5s ease; 
+    display: flex; 
+    flex-direction: column;  
+    align-items: center;  
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #EEF5DB;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
     }
+
     .post:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     .post img {
-        width: 100%;  
-        height: auto; 
-        max-width: 300px; 
-        max-height: 300px;
-        object-fit: cover; 
-        border-radius: 4px; 
+        width: 150px;  
+        height: 150px;  
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 20px;  
     }
-    .post h2 {
-        color: #7A9E9F; 
+    .post-content {
+        flex-grow: 1;  
     }
-    .post p {
-        font-size: 16px;
-        color: #4F6367; 
+    .post-header {
+        margin-bottom: 10px;  
     }
-    .delete-btn {
-        padding: 5px 10px;
-        background-color: #b84a57; 
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+    .post-header h2 {
+        color: #7A9E9F;
+        font-size: 18px;  
     }
-    .delete-btn:hover {
-        background-color: #992d3f; 
+    .post-details {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #4F6367;
     }
-    .guess-value {
-        width: 160px; 
-        text-align: center; 
-        margin: 10px auto; 
-        display: block; 
+    .description, .info {
+        font-style: italic;  
+    }
+    .details-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; 
+    }
+    .detail {
+        flex-basis: 48%; 
+    }
+    .delete-btn, .btn-primary {
+        margin-top: 10px;
     }
 </style>
 
@@ -143,7 +152,7 @@
                     } else {
                         alert("Success: Your guess has been submitted.");
                     }
-                    window.location.reload();  // Reload the page to update the view
+                    window.location.reload();  
                 },
                 error: function(xhr, status, error) {
                     alert("Error: " + xhr.responseText);
