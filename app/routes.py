@@ -27,9 +27,9 @@ def get_user_rank(points):
     elif points < 400:
         return {"name": "Sapphire", "icon": "saph.png"}
     elif points < 500:
-        return {"name": "Emerald", "icon": "img_icons8.png"}  # Assuming this is the emerald icon
+        return {"name": "Emerald", "icon": "img_icons8.png"}  
     else:
-        return {"name": "Champion", "icon": "crown.png"}  # Assuming a placeholder for Champion
+        return {"name": "Champion", "icon": "crown.png"} 
 
 
 @app.route('/postingpage')
@@ -59,9 +59,28 @@ def index():
             )
         ).paginate(page=page, per_page=2)
     else:
-        posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=10)
+        posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=2)
 
     return render_template('index.html', posts=posts, query=query)
+
+@app.route('/history')
+@login_required
+def history():
+    query = request.args.get('query', None)
+    guessed_posts_ids = [guess.post_id for guess in Guess.query.filter_by(user_id=current_user.id).all()]
+    
+    if query:
+        guessed_posts = Post.query.filter(
+            Post.id.in_(guessed_posts_ids),
+            or_(
+                Post.item_name.ilike(f'%{query}%'),
+                Post.description.ilike(f'%{query}%')
+            )
+        ).all()
+    else:
+        guessed_posts = Post.query.filter(Post.id.in_(guessed_posts_ids)).all()
+
+    return render_template('history.html', posts=guessed_posts, query=query)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -108,13 +127,13 @@ def register():
 @login_required
 def my_account(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
-    rank = get_user_rank(user.points)  # Calculate the user's rank based on their points
+    rank = get_user_rank(user.points)  
     return render_template('account.html', title='My Account', user=user, rank=rank['name'], icon=url_for('static', filename=rank['icon']))
 
 
 @app.route('/leaderboard')
 def leaderboard():
-    users = User.query.order_by(User.points.desc()).all()
+    users = User.query.order_by(User.points.desc()).limit(10).all()
     return render_template('leaderboard_1.html', users=users)
 
 
@@ -226,11 +245,11 @@ def search():
 def submit_guess(post_id):
     post = Post.query.get_or_404(post_id)  
     try:
-        user_guess = float(request.form.get('guess_price', 0))  # Get the user's guess
-        actual_price = post.sold_price  # Get the actual price of the item
+        user_guess = float(request.form.get('guess_price', 0))  
+        actual_price = post.sold_price  
 
-        error = abs(actual_price - user_guess)  # Calculate the absolute error in dollars
-        percentage_error = error / actual_price * 100  # Calculate the percentage error
+        error = abs(actual_price - user_guess) 
+        percentage_error = error / actual_price * 100  
 
         percentage_threshold = 50
         if percentage_error <= percentage_threshold:

@@ -70,6 +70,7 @@
           {% endif %}
           <hr>
           {% if current_user == user %}
+          <a href="{{ url_for('history') }}" class="btn ms-2">Previous Guesses</a>
           <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editAccountModal">
             Edit Account Details
           </button>
