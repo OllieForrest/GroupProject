@@ -257,11 +257,11 @@ def submit_guess(post_id):
         else:
             points_awarded = -min(100, int((percentage_error - percentage_threshold) / 2))
 
-        current_user.points += points_awarded  # Update user points
+        current_user.points += points_awarded  
         db.session.commit()
 
         new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=user_guess)
-        db.session.add(new_guess)  # Record the guess
+        db.session.add(new_guess)  
         db.session.commit()
 
         message = f"Your guess was ${user_guess:.2f}. You were off by ${error:.2f}. Points awarded: {points_awarded}."
