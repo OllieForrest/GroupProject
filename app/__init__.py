@@ -17,11 +17,9 @@ login = LoginManager(app)
 login.login_view = 'login'
 app.config['SECRET_KEY'] = 'you_will_never_ever_guess_it'
 
-#extension is allowed for the upload
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 if not app.debug:
     if app.config['MAIL_SERVER']:

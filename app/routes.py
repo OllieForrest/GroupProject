@@ -17,6 +17,20 @@ import random
 from sqlalchemy import or_
 from flask import jsonify
 
+def get_user_rank(points):
+    if points < 100:
+        return {"name": "Silver", "icon": "silver-medal.png"}
+    elif points < 200:
+        return {"name": "Gold", "icon": "gold.png"}
+    elif points < 300:
+        return {"name": "Platinum", "icon": "platinum.png"}
+    elif points < 400:
+        return {"name": "Sapphire", "icon": "saph.png"}
+    elif points < 500:
+        return {"name": "Emerald", "icon": "img_icons8.png"}  # Assuming this is the emerald icon
+    else:
+        return {"name": "Champion", "icon": "crown.png"}  # Assuming a placeholder for Champion
+
 
 @app.route('/postingpage')
 def postpage():
@@ -43,7 +57,7 @@ def index():
                 Post.description.ilike(f'%{query}%'), 
                 Post.item_name.ilike(f'%{query}%')
             )
-        ).paginate(page=page, per_page=10)
+        ).paginate(page=page, per_page=2)
     else:
         posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=10)
 
@@ -94,7 +108,9 @@ def register():
 @login_required
 def my_account(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
-    return render_template('account.html', title='My Account', user=user)
+    rank = get_user_rank(user.points)  # Calculate the user's rank based on their points
+    return render_template('account.html', title='My Account', user=user, rank=rank['name'], icon=url_for('static', filename=rank['icon']))
+
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -208,27 +224,37 @@ def search():
 @app.route('/submit_guess/<int:post_id>', methods=['POST'])
 @login_required
 def submit_guess(post_id):
-    post = Post.query.get_or_404(post_id)
+    post = Post.query.get_or_404(post_id)  
     try:
-        user_guess = float(request.form['guess_price'])
-        actual_price = post.sold_price
+        user_guess = float(request.form.get('guess_price', 0))  # Get the user's guess
+        actual_price = post.sold_price  # Get the actual price of the item
 
-        error = abs(actual_price - user_guess)
-        points_awarded = max(0, 100 - int(error))
+        error = abs(actual_price - user_guess)  # Calculate the absolute error in dollars
+        percentage_error = error / actual_price * 100  # Calculate the percentage error
 
-        current_user.points += points_awarded
+        percentage_threshold = 50
+        if percentage_error <= percentage_threshold:
+            points_awarded = max(0, 100 - int(percentage_error))
+        else:
+            points_awarded = -min(100, int((percentage_error - percentage_threshold) / 2))
+
+        current_user.points += points_awarded  # Update user points
         db.session.commit()
 
         new_guess = Guess(user_id=current_user.id, post_id=post_id, guessed_price=user_guess)
-        db.session.add(new_guess)
+        db.session.add(new_guess)  # Record the guess
         db.session.commit()
 
-        # Construct the success message
-        message = f"Your guess was ${user_guess}. You were off by ${error:.2f}. Points awarded: {points_awarded}."
+        message = f"Your guess was ${user_guess:.2f}. You were off by ${error:.2f}. Points awarded: {points_awarded}."
         return jsonify({'message': message, 'points_awarded': points_awarded}), 200
 
+    except ValueError:
+        return jsonify({'error': 'Invalid input for guess price.'}), 400
     except Exception as e:
-        return jsonify({'error': 'There was an issue processing your guess.'}), 400
+        print(str(e))
+        return jsonify({'error': 'There was an issue processing your guess. Please try again.'}), 500
+
+
 
 
 @app.route('/contact_us')
