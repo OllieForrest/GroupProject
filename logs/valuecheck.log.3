@@ -1,108 +1,98 @@
-2024-05-12 15:15:58,635 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
+2024-05-14 14:39:32,337 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
 Traceback (most recent call last):
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
     rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
     rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/GroupProject/app/routes.py", line 50, in index
-    return render_template('index.html', posts=posts, query=query)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/indragultom/GroupProject/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/indragultom/GroupProject/app/templates/base.html", line 137, in top-level template code
-    {% block content %}
-  File "/Users/indragultom/GroupProject/app/templates/index.html", line 106, in block 'content'
-    url: "{{ url_for('submit_guess', post_id=postId) }}",
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1073, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/map.py", line 924, in build
-    rv = self._partial_build(endpoint, values, method, append_unknown)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/map.py", line 816, in _partial_build
-    build_rv = rule.build(values, append_unknown)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/rules.py", line 839, in build
-    return self._build_unknown(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<werkzeug routing>", line 1, in <builder:'/submit_guess/<int:post_id>'>
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/converters.py", line 163, in to_url
-    value = str(self.num_convert(value))
-                ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'postId' is undefined
-2024-05-12 15:15:59,339 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py:838]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-14 14:39:45,107 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
 Traceback (most recent call last):
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
     rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
     rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/indragultom/GroupProject/app/routes.py", line 50, in index
-    return render_template('index.html', posts=posts, query=query)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/indragultom/GroupProject/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/indragultom/GroupProject/app/templates/base.html", line 137, in top-level template code
-    {% block content %}
-  File "/Users/indragultom/GroupProject/app/templates/index.html", line 106, in block 'content'
-    url: "{{ url_for('submit_guess', post_id=postId) }}",
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/app.py", line 1073, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/map.py", line 924, in build
-    rv = self._partial_build(endpoint, values, method, append_unknown)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/map.py", line 816, in _partial_build
-    build_rv = rule.build(values, append_unknown)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/rules.py", line 839, in build
-    return self._build_unknown(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<werkzeug routing>", line 1, in <builder:'/submit_guess/<int:post_id>'>
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/werkzeug/routing/converters.py", line 163, in to_url
-    value = str(self.num_convert(value))
-                ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'postId' is undefined
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-14 14:40:21,970 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-14 14:43:08,263 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-14 14:46:23,400 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-14 14:49:20,443 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-14 14:49:53,136 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-14 14:56:33,177 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]

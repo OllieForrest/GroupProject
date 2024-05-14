@@ -10,7 +10,7 @@
                     <h1 class="text-center mb-4">Sign In</h1>
                     <form action="" method="post" novalidate>
                         {{ form.hidden_tag() }}
-                        <div class="form-group">
+                        <div class="form-group" >
                             {{ form.username.label }}
                             {{ form.username(class="form-control") }}
                             {% for error in form.username.errors %}
@@ -24,7 +24,7 @@
                             <small class="text-danger">{{ error }}</small>
                             {% endfor %}
                         </div>
-                        <div class="form-check">
+                        <div class="form-group">
                             {{ form.remember_me(class="form-check-input") }}
                             {{ form.remember_me.label(class="form-check-label") }}
                         </div>

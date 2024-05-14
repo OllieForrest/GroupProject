@@ -1,8 +1,0 @@
-# Ignore Python bytecode cache files
-__pycache__/
-
-# Ignore virtual environment
-venv/
-
-# Ignore SQLite database file
-app.db
