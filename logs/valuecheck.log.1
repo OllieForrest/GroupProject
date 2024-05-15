@@ -1,0 +1,99 @@
+2024-05-15 09:38:32,509 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-15 09:38:48,625 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-15 09:48:36,009 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-15 09:48:41,318 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-15 10:28:32,123 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-15 10:28:47,000 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 105, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-15 10:31:17,966 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-15 10:31:37,621 ERROR: Exception on /register [POST] [in /Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/routes.py", line 118, in register
+    user.set_password(form.password.data)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/app/models.py", line 29, in set_password
+    self.password_hash = generate_password_hash(password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 101, in generate_password_hash
+    h, actual_method = _hash_internal(method, salt, password)
+  File "/Users/rubywilner/Desktop/cits3403/GroupProject/venv/lib/python3.9/site-packages/werkzeug/security.py", line 43, in _hash_internal
+    hashlib.scrypt(password, salt=salt, n=n, r=r, p=p, maxmem=maxmem).hex(),
+AttributeError: module 'hashlib' has no attribute 'scrypt'
+2024-05-15 10:37:56,660 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]

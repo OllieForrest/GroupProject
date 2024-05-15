@@ -1,0 +1,12 @@
+<<<<<<< HEAD:venv/bin/mako-render
+#!/Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/venv/bin/python3.12
+=======
+#!/Users/rubywilner/Desktop/cits3403/GroupProject/venv/bin/python3.12
+>>>>>>> 0573e988e602ca40b28afae1ab0d996474ad34da:venv/bin/mako-render 3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from mako.cmd import cmdline
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(cmdline())
