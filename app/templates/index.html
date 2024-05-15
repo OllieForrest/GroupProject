@@ -151,8 +151,8 @@
         <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
             <div class="form-group">
                 <label for="guess">Guess the Price:</label>
-                <input type="range" id="guess-slider-{{ post.id }}" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" onchange="updateTextInput(this.value, {{ post.id }});">
-                <input type="text" id="guess-text-{{ post.id }}" class="form-control guess-value" onchange="updateSliderValue(this.value, {{ post.id }});">
+                <input type="range" id="guess-slider-{{ post.id }}" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" onchange="updateTextInput(this.value, '{{ post.id }}');">
+                <input type="text" id="guess-text-{{ post.id }}" class="form-control guess-value" onchange="updateSliderValue(this.value, '{{ post.id }}');">'
                 <input type="hidden" name="guess_price" id="guess-hidden-{{ post.id }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit Guess</button>
