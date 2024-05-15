@@ -42,8 +42,8 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     .post img {
-        width: 150px;  
-        height: 150px;  
+        width: 200px;  
+        height: auto;  
         object-fit: cover;
         border-radius: 4px;
         margin-right: 20px;  
@@ -115,6 +115,7 @@
             {% else %}
                 <h2>Welcome, {{ current_user.username }}!</h2>
                 <p class="lead">Guess the price correctly and earn points!</p>
+                <p>Guess The Prices!!:</p>
             {% endif %}
         </div>
     </div>
@@ -150,8 +151,9 @@
         <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
             <div class="form-group">
                 <label for="guess">Guess the Price:</label>
-                <input type="range" id="guess-slider" class="form-range" min="0" max="{{ post.maxslider }}" name="guess_price" oninput="updateTextInput(this.value);">
-                <input type="text" id="text-input" class="form-control guess-value" oninput="updateSliderValue(this.value);">
+                <input type="range" id="guess-slider-{{ post.id }}" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" onchange="updateTextInput(this.value, {{ post.id }});">
+                <input type="text" id="guess-text-{{ post.id }}" class="form-control guess-value" onchange="updateSliderValue(this.value, {{ post.id }});">
+                <input type="hidden" name="guess_price" id="guess-hidden-{{ post.id }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit Guess</button>
         </form>
@@ -178,26 +180,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-    function updateGuess(slider, value) {
-        var parentDiv = slider.closest('.form-group');
-        parentDiv.querySelector('.guess-value').value = '$' + value;
-        var maxSliderValue = parseInt(slider.max);
-        slider.step = maxSliderValue / 100;
+    function updateTextInput(value, postId) {
+        document.getElementById('guess-text-' + postId).value = '$' + value;
+        document.getElementById('guess-hidden-' + postId).value = value; 
     }
- 
-function updateTextInput(value) {
-    document.getElementById('text-input').value = value;
-}
 
-
-function updateSliderValue(value) {
-    const slider = document.getElementById('guess-slider');
-    if (value >= parseInt(slider.min) && value <= parseInt(slider.max)) {
-        slider.value = value;
-    } else {
-        console.warn("Input value is out of range");
+    function updateSliderValue(value, postId) {
+        value = value.replace('$', ''); 
+        const slider = document.getElementById('guess-slider-' + postId);
+        if (value >= parseInt(slider.min) && value <= parseInt(slider.max)) {
+            slider.value = value;
+            updateTextInput(value, postId);  
+        } else {
+            console.warn("Input value is out of range");
+        }
     }
-}
 
     $(document).ready(function() {
         $('.post form').submit(function(e) {
@@ -222,4 +219,5 @@ function updateSliderValue(value) {
         });
     });
 </script>
+
 {% endblock %}
