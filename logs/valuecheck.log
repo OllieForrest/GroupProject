@@ -69,6 +69,7 @@ AttributeError: module 'hashlib' has no attribute 'scrypt'
 2024-05-15 15:33:59,853 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 15:39:19,972 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 15:45:04,177 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
+<<<<<<< HEAD
 2024-05-15 15:50:31,158 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 15:54:43,744 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 16:01:48,935 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
@@ -85,3 +86,8 @@ AttributeError: module 'hashlib' has no attribute 'scrypt'
 2024-05-15 19:38:45,201 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 19:46:04,002 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 19:48:52,484 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
+||||||| 8d26db77
+=======
+2024-05-15 18:15:39,551 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-15 19:03:25,442 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+>>>>>>> 7f532c8acc62296d5ba9990687fb8c0035cd24d0
