@@ -33,6 +33,7 @@
     background-color: #EEF5DB;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease;
+    color: #4F6367;
     }
 
     .post:hover {
@@ -40,14 +41,19 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     .post img {
-        width: 150px;  
-        height: 150px;  
+        width: 200px;  
+        height: auto;  
         object-fit: cover;
-        border-radius: 4px;
-        margin-right: 20px;  
+        border-radius: 20px;
+        margin-right: 20px; 
+        padding: 10px; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 5px solid white;
+        margin-top: 10px;
     }
     .post-content {
-        flex-grow: 1;  
+        flex-grow: 1;
+        color: #4F6367;  
     }
     .post-header {
         margin-bottom: 10px;  
@@ -66,7 +72,8 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center
+        colour#4F6367;
     }
 
     .post form button {
@@ -114,7 +121,7 @@
         {% if posts %}
             {% for post in posts %}
             <div class="post">
-                <div class="text-center">
+                <div class="text-center" style="margin-bottom: 30px; border-bottom: 6px solid white; border-top: 6px solid white; padding: 30px" >
                     <h2>{{ post.item_name }}</h2>
                     {% if post.img %}
                     <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
