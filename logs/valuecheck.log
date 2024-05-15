@@ -70,3 +70,4 @@ AttributeError: module 'hashlib' has no attribute 'scrypt'
 2024-05-15 15:39:19,972 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 15:45:04,177 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
 2024-05-15 18:15:39,551 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-15 19:03:25,442 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
