@@ -42,17 +42,21 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     .post img {
-        width: 200px;  
+        width: 300px;  
         height: auto;  
         object-fit: cover;
-        border-radius: 4px;
-        margin-right: 20px;  
+        border-radius: 20px;
+        margin-right: 20px; 
+        padding: 10px; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 5px solid white;
+        margin-top: 10px;
     }
     .post-content {
         flex-grow: 1;  
     }
     .post-header {
-        margin-bottom: 10px;  
+        margin-bottom: 20px;  
     }
     .post-header h2 {
         color: #7A9E9F;
@@ -62,6 +66,7 @@
         margin-bottom: 5px;
         font-size: 14px;
         color: #4F6367;
+
     }
 
     .post form {
@@ -115,7 +120,6 @@
             {% else %}
                 <h2>Welcome, {{ current_user.username }}!</h2>
                 <p class="lead">Guess the price correctly and earn points!</p>
-                <p>Guess The Prices!!:</p>
             {% endif %}
         </div>
     </div>
@@ -131,7 +135,7 @@
 {% if posts %}
     {% for post in posts %}
     <div class="post">
-        <div class="text-center" style="margin-bottom: 20px;">
+        <div class="text-center" style="margin-bottom: 30px; border-bottom: 6px solid white; border-top: 6px solid white; padding: 30px" >
             <h2>{{ post.item_name }}</h2>
             {% if post.img %}
             <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
