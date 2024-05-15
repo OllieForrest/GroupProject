@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#!/Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/venv/bin/python3.12
-=======
 #!/Users/rubywilner/Desktop/cits3403/GroupProject/venv/bin/python3.12
->>>>>>> 0573e988e602ca40b28afae1ab0d996474ad34da
 # -*- coding: utf-8 -*-
 import re
 import sys

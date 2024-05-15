@@ -115,7 +115,6 @@
             {% else %}
                 <h2>Welcome, {{ current_user.username }}!</h2>
                 <p class="lead">Guess the price correctly and earn points!</p>
-                <p>Guess The Prices!!:</p>
             {% endif %}
         </div>
     </div>
@@ -131,7 +130,7 @@
 {% if posts %}
     {% for post in posts %}
     <div class="post">
-        <div class="text-center">
+        <div class="text-center" style="margin-bottom: 20px;">
             <h2>{{ post.item_name }}</h2>
             {% if post.img %}
             <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
@@ -151,11 +150,12 @@
         <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
             <div class="form-group">
                 <label for="guess">Guess the Price:</label>
-                <input type="range" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" name="guess_price" onchange="updateGuess(this, value)">
-                <input type="text" class="form-control guess-value" readonly>
+                <input type="range" id="guess-slider" class="form-range" min="0" max="{{ post.maxslider }}" name="guess_price" oninput="updateTextInput(this.value);">
+                <input type="text" id="text-input" class="form-control guess-value" oninput="updateSliderValue(this.value);">
             </div>
             <button type="submit" class="btn btn-primary">Submit Guess</button>
         </form>
+        
         {% endif %}
     </div>
     {% endfor %}
@@ -184,6 +184,20 @@
         var maxSliderValue = parseInt(slider.max);
         slider.step = maxSliderValue / 100;
     }
+ 
+function updateTextInput(value) {
+    document.getElementById('text-input').value = value;
+}
+
+
+function updateSliderValue(value) {
+    const slider = document.getElementById('guess-slider');
+    if (value >= parseInt(slider.min) && value <= parseInt(slider.max)) {
+        slider.value = value;
+    } else {
+        console.warn("Input value is out of range");
+    }
+}
 
     $(document).ready(function() {
         $('.post form').submit(function(e) {
