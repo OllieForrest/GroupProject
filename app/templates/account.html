@@ -48,13 +48,13 @@
   }
 </style>
 
-<div class="container fade-in">
-  <div class="row fade-in">
-    <div class="col-md-6 fade-in">
-      <h1 class="text-center fade-in" style="color: #4F6367;">My Account</h1>
+<div class="container">
+  <div class="row ">
+    <div class="col-md-6 ">
+      <h1 class="text-center " style="color: #4F6367;">My Account</h1>
       <p style="color:#4F6367" class="text-center"> Edit your account details here!</p>
-      <div class="card fade-in">
-        <div class="card-body fade-in">
+      <div class="card ">
+        <div class="card-body ">
           <h5 class="card-title" >Account Details</h5>
           {% if user.img %}
             <img src="data:{{ user.mimetype }};base64,{{ user.img }}" class="img-fluid rounded-circle mb-3 profile-image" alt="User Avatar">
@@ -79,12 +79,12 @@
           <!-- Modal for editing account details -->
           <div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editAccountModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content" style="background-color: #f4f9e7;">
                 <div class="modal-header">
                   <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #f4f9e7;">
 
                   <form id="editAccountForm" action="/update_user" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
