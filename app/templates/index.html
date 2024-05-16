@@ -31,7 +31,7 @@
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
-    background-color: #EEF5DB;
+    background-color: #f4f9e7;
     color: #7A9E9F; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease;
@@ -107,6 +107,8 @@
         background-color: rgb(43, 27, 48);
         background-color: #992d3f; 
     }
+    
+
 
     
 </style>
@@ -118,16 +120,16 @@
                 <h2>Search Results for "{{ query }}"</h2>
                 <p class="lead">Explore the items that match your search!</p>
             {% else %}
-                <h2>Welcome, {{ current_user.username }}!</h2>
-                <p class="lead">Guess the price correctly and earn points!</p>
+                <h2 style="color:#4F6367 ">Welcome, {{ current_user.username }}!</h2>
+                <p class="lead" style="color:#4F6367">Guess the price correctly and earn points!</p>
             {% endif %}
         </div>
     </div>
 </div>
 
 <div class="container mt-5">
-    <form class="d-flex mb-3" action="{{ url_for('index') }}" method="GET">
-        <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+    <form class="d-flex mb-3"  action="{{ url_for('index') }}" method="GET">
+        <input style="background-color: #f4f9e7;" class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
@@ -155,14 +157,15 @@
         <form action="{{ url_for('submit_guess', post_id=post.id) }}" method="post">
             <div class="form-group">
                 <label for="guess">Guess the Price:</label>
-                <input type="range" id="guess-slider-{{ post.id }}" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" onchange="updateTextInput(this.value, '{{ post.id }}');">
-                <input type="text" id="guess-text-{{ post.id }}" class="form-control guess-value" onchange="updateSliderValue(this.value, '{{ post.id }}');">'
+                <input style="padding: 5px; color:#ffffff; background:#ffffff; border-radius: 8px" type="range" id="guess-slider-{{ post.id }}" class="form-range guess-slider" min="0" max="{{ post.maxslider }}" onchange="updateTextInput(this.value, '{{ post.id }}');">
+                <input style="background-color: #f4f9e7; border: #f4f9e7;" type="text" id="guess-text-{{ post.id }}" class="form-control guess-value" onchange="updateSliderValue(this.value, '{{ post.id }}');">'
                 <input type="hidden" name="guess_price" id="guess-hidden-{{ post.id }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit Guess</button>
         </form>
         
         {% endif %}
+        
     </div>
     {% endfor %}
 {% else %}
