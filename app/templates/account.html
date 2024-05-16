@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .fade-in {
+        opacity: 0;
+        animation: fadeInAnimation 0.8s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+    }
+    }
+  .container {
+    max-width: 1400px;
+  }
+  .statistics-card {
+    background-color: #333;
+    color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+    margin-top: 40px;
+  }
+  h1, h5, p {
+    margin-bottom: 20px;
+    font-size: larger;
+  }
+  h1 {
+    font-size: 32px;
+  }
+
+  .profile-image{
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+  }
+
+  .card {
+  background-color: #f4f9e7;
+            color: #7A9E9F;
+            border: 2px solid #f4f9e7;
+            border-radius: 8px;
+  }
+</style>
+
+<div class="container fade-in">
+  <div class="row fade-in">
+    <div class="col-md-6 fade-in">
+      <h1 class="text-center fade-in" style="color: #4F6367;">My Account</h1>
+      <p style="color:#4F6367" class="text-center"> Edit your account details here!</p>
+      <div class="card fade-in">
+        <div class="card-body fade-in">
+          <h5 class="card-title" >Account Details</h5>
+          {% if user.img %}
+            <img src="data:{{ user.mimetype }};base64,{{ user.img }}" class="img-fluid rounded-circle mb-3 profile-image" alt="User Avatar">
+          {% else %}
+            <img src="{{ user.avatar(128) }}" class="img-fluid rounded-circle mb-3 profile-image" alt="User Avatar">
+          {% endif %}
+
+          <p class="card-text">Name: {{ user.username }}</p>
+          <p class="card-text">Email: {{ user.email }}</p>
+          {% if user.about_me %}
+          <p>About me: {{ user.about_me }}</p>
+          {% endif %}
+          {% if user.last_seen %}
+          <p>Last seen on: {{ user.last_seen.strftime('%d-%m-%Y') }}</p>
+          {% endif %}
+          <hr>
+          {% if current_user == user %}
+          <a href="{{ url_for('history') }}" class="btn">Previous Guesses</a>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editAccountModal">
+            Edit Account Details
+          </button>
+          <!-- Modal for editing account details -->
+          <div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editAccountModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <form id="editAccountForm" action="/update_user" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label for="profileImage">Profile Image:</label>
+                        <input type="file" name="profile_image" class="form-control" id="profileImage" name=picture>
+                    </div>
+                      <label for="inputName">Username:</label>
+                      <input type="text" name="username" class="form-control" id="inputName" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail">Email:</label>
+                      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputUsername">About Me:</label>
+                      <input type="text" name="about_me" class="form-control" id="inputUsername" placeholder="Enter your description" required>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn">Save Changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h1 class="text-center" style="color: #4F6367;">Statistics</h1>
+      <p style="color:#4F6367"class="text-center" > Checkout your performance here!</p>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Performance Metrics</h5>
+          <p> </p>
+          <!-- Add any desired statistics here -->
+          <p class="card-text" id="points">Points: {{ user.points }}</p>
+          <p class="card-text">Rank: {{ rank }} <img src="{{ icon }}" alt="Rank Icon" style="width: 30px; height: 30px;"></p>
+          <p class="card-text">Achievements: {{ user.achievements|length }} achievements</p>
+          <!-- Add more statistics as needed -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<style>
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        
+    }
+    
+    .contact-container {
+        max-width: 500px;
+        background-color: #f4f9e7;
+        color: #7A9E9F;
+        border: 20px solid #f4f9e7;
+        border-radius: 8px;
+    }
+    
+    .contact-container h1 {
+        margin-bottom: 20px;
+        color: #7A9E9F;
+    }
+    
+    .contact-container p {
+        margin-bottom: 20px;
+        color: #7A9E9F;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #7A9E9F;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e4ebd1;
+        border-radius: 5px;
+        background-color: #e4ebd1
+    }
+    
+    textarea {
+        resize: vertical;
+    }
+    
+    button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #7A9E9F;
+        color: #4F6367;
+        border: 2px solid #7A9E9F;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #b8d8d8;
+        border: 2px solid #b8d8d8; 
+        color: #4F6367
+    
+    }
+    
+</style>
+
+<section class="content">
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Please feel free to email us at <a href="mailto:ValueCheck@example.com">ValueCheck@example.com</a> or fill out the enquiry form below, and we will get back to you!</p>
+
+        <form action="submit_enquiry.php" method="POST">
+            <div class="form-group">
+                <label for="name" style="text-align: center;">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email" style="text-align: center;">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message" style="text-align: center;">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    function updateDateTime() {
+        document.getElementById('date-time').innerHTML = moment().format('LLLL');
+    }
+    setInterval(updateDateTime, 1000); // Update the time every second
+</script>
+{% endblock %}

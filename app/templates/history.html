@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    
+    .container > form .btn-outline-primary {
+        transition: all 0.3s ease; 
+        transform: scale(1); 
+    }
+
+    .container > form .btn-outline-primary:hover {
+        transform: scale(1.05);
+        background-color: white; 
+        color: #4F6367;
+    }
+
+    .container > form .btn-outline-primary:focus {
+        box-shadow: 0 0 0 2px #4F6367; 
+        outline: none; 
+    }
+
+    .container > form .btn-outline-primary:active {
+        transform: scale(0.95);
+    }
+
+    .post {
+    display: flex; 
+    flex-direction: column;  
+    align-items: center;  
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #EEF5DB;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    color: #4F6367;
+    }
+
+    .post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .post img {
+        width: 200px;  
+        height: auto;  
+        object-fit: cover;
+        border-radius: 20px;
+        margin-right: 20px; 
+        padding: 10px; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 5px solid white;
+        margin-top: 10px;
+    }
+    .post-content {
+        flex-grow: 1;
+        color: #4F6367;  
+    }
+    .post-header {
+        margin-bottom: 10px;  
+    }
+    .post-header h2 {
+        color: #7A9E9F;
+        font-size: 18px;  
+    }
+    .post-details {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #4F6367;
+    }
+
+    .post form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center
+        colour#4F6367;
+    }
+
+    .post form button {
+        margin-top: 10px;
+        width: auto;
+        padding: 10px 20px;
+    }
+    .description, .info {
+        font-style: italic;  
+    }
+    .details-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; 
+    }
+    .detail {
+        flex-basis: 48%; 
+    }
+    
+    .delete-btn {
+        padding: 5px 10px;
+        background-color: #3d324e;
+        color: rgb(255, 255, 255);
+        background-color: #b84a57; 
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background-color: rgb(43, 27, 48);
+        background-color: #992d3f; 
+    }
+</style>
+
+<div class="container mt-8">
+    <h1 class="text-center">Guess History</h1>
+    <div class="row">
+        <div class="container mt-5">
+            <form class="d-flex mb-3" action="{{ url_for('history') }}" method="GET">
+                <input class="form-control me-2" type="search" name="query" placeholder="Search your history..." aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+        </div>
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post">
+                <div class="text-center" style="margin-bottom: 30px; border-bottom: 6px solid white; border-top: 6px solid white; padding: 30px" >
+                    <h2>{{ post.item_name }}</h2>
+                    {% if post.img %}
+                    <img src="data:{{ post.mimetype }};base64,{{ post.img }}" alt="Post Image">
+                    {% else %}
+                    <p>No Image Available</p>
+                    {% endif %}
+                </div>
+                <p>About this item: {{ post.description }}</p>
+                <p>Category: {{ post.category }}</p>
+                <p>Condition: {{ post.condition }}</p>
+                <p>Retail Price: ${{ post.starting_price }}</p>
+                <p>Sold Price: ${{ post.sold_price }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center">
+                <p>No results found. Try another search or view all guessed posts.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
