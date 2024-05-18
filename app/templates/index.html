@@ -92,23 +92,6 @@
     .detail {
         flex-basis: 48%; 
     }
-    
-    .delete-btn {
-        padding: 5px 10px;
-        background-color: #3d324e;
-        color: rgb(255, 255, 255);
-        background-color: #b84a57; 
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .delete-btn:hover {
-        background-color: rgb(43, 27, 48);
-        background-color: #992d3f; 
-    }
-    
-
 
     
 </style>
@@ -129,7 +112,7 @@
 
 <div class="container mt-5">
     <form class="d-flex mb-3"  action="{{ url_for('index') }}" method="GET">
-        <input style="background-color: #f4f9e7;" class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
