@@ -20,5 +20,8 @@ Agile Web Dev CITS3403
 # 6.Set the flask application variable: MacOS: export FLASK_APP=app.py, Windows: set FLASK_APP=app.py
 # 7.Flask Run: flask run
 # 8. Open in Browser: http://127.0.0.1:5000
-
-# how to run tests
+#
+# How to run tests
+#The tests can be found in the test.py file
+#CD into the GroupProject directory on your local repository
+#Use the follwoing terminal command to run the tests: python test.py
