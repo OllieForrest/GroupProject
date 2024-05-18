@@ -20,14 +20,14 @@ from flask import jsonify
 def get_user_rank(points):
     if points < 100:
         return {"name": "Silver", "icon": "silver-medal.png"}
-    elif points < 200:
+    elif points < 2000:
         return {"name": "Gold", "icon": "gold.png"}
-    elif points < 300:
+    elif points < 20000:
         return {"name": "Platinum", "icon": "platinum.png"}
-    elif points < 400:
-        return {"name": "Sapphire", "icon": "saph.png"}
-    elif points < 500:
-        return {"name": "Emerald", "icon": "img_icons8.png"}  
+    elif points < 40000:
+        return {"name": "Sapphire", "icon": "crystal.png"}
+    elif points < 500000:
+        return {"name": "Emerald", "icon": "emerald.png"}  
     else:
         return {"name": "Champion", "icon": "crown.png"} 
 
