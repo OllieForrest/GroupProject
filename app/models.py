@@ -6,6 +6,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from hashlib import md5
+from datetime import datetime
 
 
 class User(UserMixin, db.Model):
@@ -58,6 +59,7 @@ class Post(db.Model):
     picture_name: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
     img: so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
     mimetype:so.Mapped[str] = so.mapped_column(sa.String(), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Guess(db.Model):
     id = db.Column(db.Integer, primary_key=True)

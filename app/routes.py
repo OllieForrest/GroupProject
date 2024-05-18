@@ -57,9 +57,9 @@ def index():
                 Post.description.ilike(f'%{query}%'), 
                 Post.item_name.ilike(f'%{query}%')
             )
-        ).paginate(page=page, per_page=2)
+        ).order_by(Post.created_at.desc()).paginate(page=page, per_page=2)
     else:
-        posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).paginate(page=page, per_page=2)
+        posts = Post.query.filter(Post.id.notin_(guessed_posts_ids)).order_by(Post.created_at.desc()).paginate(page=page, per_page=2)
 
     return render_template('index.html', posts=posts, query=query)
 
