@@ -1,120 +1,84 @@
-2024-05-15 20:07:36,719 ERROR: Exception on /update_user [POST] [in /opt/anaconda3/lib/python3.11/site-packages/flask/app.py:1744]
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
-    self.dialect.do_execute(
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.email
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.11/site-packages/flask/app.py", line 2529, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/flask/app.py", line 1825, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/flask/app.py", line 1823, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/flask/app.py", line 1799, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/routes.py", line 164, in edit_profile
-    db.session.commit()
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/scoping.py", line 598, in commit
-    return self._proxied.commit()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1969, in commit
-    trans.commit(_to_root=True)
-  File "<string>", line 2, in commit
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1256, in commit
-    self._prepare_impl()
-  File "<string>", line 2, in _prepare_impl
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1231, in _prepare_impl
-    self.session.flush()
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4312, in flush
-    self._flush(objects)
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4447, in _flush
-    with util.safe_reraise():
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4408, in _flush
-    flush_context.execute()
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
-    rec.execute(self)
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
-    _emit_update_statements(
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 910, in _emit_update_statements
-    c = connection.execute(
-        ^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
-    return meth(
-           ^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 517, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1639, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
-    return self._exec_single_context(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2344, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
-    self.dialect.do_execute(
-  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 922, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.email
-[SQL: UPDATE user SET username=?, email=?, about_me=?, img=?, mimetype=? WHERE user.id = ?]
-[parameters: ('meowmeowmeow', 'meow@gmail.com', 'Live Love Laugh ', '/9j/4AAQSkZJRgABAgEASABIAAD/4TLJRXhpZgAATU0AKgAAAAgADAEPAAIAAAAGAAAAngEQAAIAAAAPAAAApAESAAMAAAABAAYAAAEaAAUAAAABAAAAtAEbAAUAAAABAAAAvAEoAAMAAAABAAIAA ... (5095714 characters truncated) ... FuzoAcYI6V83+KoRrXxFlt9RZpI1bYFzgYFZydp2A9ovZrH4n+AZ9SeEwfYl3DHIJr5e8P7odWTTrw/IGZoynJGK+s9Vhi8OeAZ7DSVEULLgjqTx618u+FIkTVvthG6TeR83IAxWsIpXKktmf/9k=', 'image/jpeg', 20)]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)
-2024-05-15 20:16:05,494 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 20:18:36,691 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 20:20:14,470 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 20:25:13,570 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 20:28:18,913 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 20:30:02,360 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 21:17:21,793 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 21:21:10,481 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 21:25:56,852 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 21:30:57,933 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-15 21:35:46,606 INFO: ValueCheck startup [in /Users/jessicaharcourt-cooke/Desktop/GroupProject/GroupProject/app/__init__.py:50]
-2024-05-16 09:49:05,498 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 09:49:08,212 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 09:53:54,667 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 09:54:39,967 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 09:58:40,621 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:03:41,031 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:04:01,957 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:04:28,188 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:08:31,718 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:09:04,833 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:09:48,951 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:10:40,037 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:11:58,178 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:12:40,948 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:12:49,909 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:14:27,171 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:15:58,163 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:16:42,305 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:18:43,264 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:20:28,287 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:21:07,359 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:24:17,657 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
-2024-05-16 10:25:07,687 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:25:43,344 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:31:42,275 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:37:21,893 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:38:20,100 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:38:38,030 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:39:32,282 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 13:42:46,041 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-17 14:12:14,966 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:16:20,243 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:17:19,632 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:17:35,605 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:18:30,166 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:20:23,747 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:21:48,850 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:22:49,423 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:25:16,186 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:25:31,152 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:29:00,873 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:29:40,090 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:30:20,129 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:34:57,343 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:36:00,543 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:36:36,274 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:36:53,638 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:39:00,112 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:39:40,118 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:41:07,651 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:44:08,472 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:44:30,006 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:46:05,516 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:47:06,934 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:47:27,773 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:48:34,150 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:48:44,172 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:49:12,550 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:50:01,902 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:50:47,509 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:50:58,426 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:51:34,470 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:53:13,943 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:53:52,659 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:54:14,346 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:54:21,298 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:55:41,864 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:57:38,939 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:57:52,453 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:58:02,824 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:58:28,430 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:58:30,899 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:59:55,778 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 12:59:59,766 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:01:09,678 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:01:51,615 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:02:35,831 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:04:04,287 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:05:39,793 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:07:31,391 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:08:50,835 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:09:45,911 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:10:05,863 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:10:24,090 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:10:51,557 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:11:13,645 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:11:32,382 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:11:53,379 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:12:09,496 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:12:36,708 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:12:48,969 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:13:58,465 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:17:19,312 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:17:45,266 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:18:03,310 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:19:01,569 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:20:44,051 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:20:54,067 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:22:15,748 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:23:45,851 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:24:23,410 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:25:03,324 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:25:36,772 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:27:45,951 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:28:00,165 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:29:35,660 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
+2024-05-18 13:30:17,948 INFO: ValueCheck startup [in /Users/rubywilner/Desktop/cits3403/GroupProject/app/__init__.py:50]
